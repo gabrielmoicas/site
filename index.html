@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriel Garcia — Diretor de Arte, Assistência de Direção & Colorista</title>
+<meta name="description" content="Portfólio de Gabriel Garcia — Direção de Arte, Assistência de Direção e Colorização. Crisálida (Netflix Brasil / TV Cultura), curtas premiados no Catarinense de Cinema e LPG.">
+<style>
+  :root{
+    --bg: #0b0f0d;
+    --bg-soft: #121613;
+    --panel: #161c18;
+    --line: rgba(242,237,228,0.10);
+    --ink: #f2ede4;
+    --ink-muted: #9aa39a;
+    --amber: #c9772b;
+    --amber-soft: rgba(201,119,43,0.16);
+    --teal: #2c4a47;
+    --teal-bright: #4d8a83;
+
+    --display: 'Fraunces', 'Iowan Old Style', 'Georgia', serif;
+    --body: 'Work Sans', 'Helvetica Neue', Arial, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+
+  @font-face{
+    font-family:'Fraunces';
+    src: local('Fraunces');
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+
+  ::selection{background:var(--amber); color:#12160f;}
+
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:2; opacity:0.045; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 5vw;
+    mix-blend-mode:difference;
+  }
+  .mark{
+    font-family:var(--display); font-weight:600; font-size:1.15rem; letter-spacing:0.02em;
+  }
+  nav{display:flex; gap:clamp(16px,3vw,36px); font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;}
+  nav a{opacity:0.75; transition:opacity 0.25s;}
+  nav a:hover{opacity:1;}
+  .nav-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    position:relative;
+    padding:0 5vw 64px;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero-video{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; z-index:0;
+    filter:saturate(1.05) contrast(1.02);
+  }
+  .hero-overlay{
+    position:absolute; inset:0; z-index:1;
+    background:
+      linear-gradient(180deg, rgba(11,15,13,0.35) 0%, rgba(11,15,13,0.55) 55%, rgba(11,15,13,0.92) 100%),
+      radial-gradient(ellipse 90% 60% at 20% 0%, rgba(44,74,71,0.45), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 85% 15%, rgba(201,119,43,0.18), transparent 55%);
+  }
+  .hero > *:not(.hero-video):not(.hero-overlay){position:relative; z-index:2;}
+  h1.hero-title{
+    font-family:var(--display); font-weight:500;
+    font-size:clamp(3rem, 9vw, 7.2rem); line-height:0.94; letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .roles{
+    margin-top:28px;
+    font-family:var(--mono); font-size:clamp(0.85rem,1.6vw,1.05rem); letter-spacing:0.04em;
+    color:var(--ink-muted); text-transform:uppercase;
+  }
+
+  /* ---------- MARQUEE (logos de produtoras) ---------- */
+  .marquee-wrap{
+    border-bottom:1px solid var(--line); background:var(--bg-soft); overflow:hidden; padding:26px 0;
+  }
+  .marquee{display:flex; width:max-content; gap:72px; animation:scroll 28s linear infinite; align-items:center;}
+  .logo-slot{
+    height:28px; padding:0 4px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink); opacity:0.55; white-space:nowrap;
+    filter:grayscale(1) brightness(1.4);
+  }
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:clamp(64px,10vw,140px) 5vw;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap;
+    margin-bottom:clamp(36px,5vw,64px);
+    border-bottom:1px solid var(--line); padding-bottom:24px;
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--amber);
+    display:block; margin-bottom:14px;
+  }
+  h2{font-family:var(--display); font-weight:500; font-size:clamp(2rem,4.5vw,3.2rem); letter-spacing:-0.01em;}
+  .section-note{font-family:var(--body); color:var(--ink-muted); max-width:34ch; font-size:0.95rem;}
+
+  /* ---------- SOBRE ---------- */
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:clamp(32px,6vw,80px);}
+  .about-grid p{color:var(--ink-muted); font-size:1.05rem; max-width:62ch; margin-bottom:1.2em;}
+  .about-grid p:first-child{color:var(--ink); font-size:1.2rem; font-family:var(--display); line-height:1.4;}
+  .credentials{border-left:1px solid var(--line); padding-left:28px; display:flex; flex-direction:column; gap:22px;}
+  .credentials dt{font-family:var(--mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber); margin-bottom:4px;}
+  .credentials dd{color:var(--ink-muted); font-size:0.92rem;}
+
+  /* ---------- PROJECT GRID (pôsteres) ---------- */
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:22px;}
+  .poster{
+    position:relative; aspect-ratio:2/3; overflow:hidden; display:block;
+    border:1px solid var(--line); background:var(--bg-soft);
+  }
+  .poster-art{
+    position:absolute; inset:0; z-index:0;
+    background:linear-gradient(155deg, var(--teal) 0%, var(--bg-soft) 62%);
+    transition:transform 0.6s ease;
+  }
+  .poster-art::after{
+    content:'GG'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:var(--display); font-weight:600; font-size:3.4rem; letter-spacing:0.04em;
+    color:rgba(242,237,228,0.07);
+  }
+  .poster:hover .poster-art{transform:scale(1.05);}
+  .poster-shade{
+    position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, transparent 38%, rgba(11,15,13,0.94) 100%);
+  }
+  .poster-info{position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:flex-end; padding:18px;}
+  .poster-info .yr{font-family:var(--mono); font-size:0.68rem; color:var(--amber); letter-spacing:0.06em;}
+  .poster-info h3{font-family:var(--display); font-weight:500; font-size:1.15rem; margin:8px 0 6px; line-height:1.18;}
+  .poster-info .studio{font-size:0.76rem; color:var(--ink-muted); margin-bottom:12px;}
+  .poster-info .tag{
+    font-family:var(--mono); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-muted);
+    border:1px solid var(--line); padding:4px 8px; display:inline-block; width:fit-content; margin-bottom:12px;
+  }
+  .poster-info .go{
+    font-family:var(--mono); font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase;
+    display:flex; align-items:center; gap:6px; color:var(--ink);
+  }
+  .poster-info .go::after{content:'→'; transition:transform 0.3s ease;}
+  .poster:hover .poster-info .go::after{transform:translateX(6px);}
+  .poster.award{border-color:var(--amber);}
+  .poster.award .tag{border-color:var(--amber); color:var(--amber);}
+
+  /* ---------- CTA / CONTATO ---------- */
+  .cta{
+    background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    text-align:center;
+  }
+  .cta h2{font-size:clamp(2.4rem,7vw,5rem); max-width:16ch; margin:0 auto 28px;}
+  .cta-links{display:flex; justify-content:center; gap:clamp(16px,3vw,40px); flex-wrap:wrap; margin-top:36px; font-family:var(--mono); font-size:0.85rem; letter-spacing:0.04em;}
+  .cta-links a{border-bottom:1px solid transparent; padding-bottom:4px; transition:border-color 0.25s, color 0.25s;}
+  .cta-links a:hover{border-color:var(--amber); color:var(--amber);}
+
+  footer{
+    padding:36px 5vw; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+    font-family:var(--mono); font-size:0.7rem; letter-spacing:0.05em; color:var(--ink-muted); text-transform:uppercase;
+  }
+
+  @media (max-width:760px){
+    .about-grid{grid-template-columns:1fr;}
+    .credentials{border-left:none; border-top:1px solid var(--line); padding-left:0; padding-top:24px;}
+    header{padding:18px 6vw;}
+    nav{position:fixed; top:0; right:0; height:100vh; width:min(78vw,320px); background:var(--bg); flex-direction:column; justify-content:center; align-items:flex-start; padding:0 40px; transform:translateX(100%); transition:transform 0.4s ease; gap:26px; mix-blend-mode:normal; border-left:1px solid var(--line);}
+    nav.open{transform:translateX(0);}
+    .nav-toggle{display:block; background:none; border:none; color:var(--ink); font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; z-index:60; mix-blend-mode:difference;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header>
+  <a class="mark" href="#top">GABRIEL GARCIA</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">MENU</button>
+  <nav id="nav">
+    <a href="#sobre">Sobre</a>
+    <a href="#arte">Direção de Arte</a>
+    <a href="#ad">Assistência de Direção</a>
+    <a href="#cor">Colorização</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <video class="hero-video" autoplay muted loop playsinline poster="assets/reel-poster.jpg">
+    <source src="assets/reel.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <h1 class="hero-title">GABRIEL<br>GARCIA</h1>
+  <div class="roles">
+    <span>Direção de Arte, Assistência de Direção, Colorização</span>
+  </div>
+</section>
+
+<!-- Faixa de logos de produtoras. Troque cada .logo-slot por <img src="assets/logos/nome.png" alt="Nome da Produtora"> quando tiver os arquivos (logos em off-white, fundo transparente). -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span class="logo-slot">Arapy Produções</span>
+    <span class="logo-slot">Vila dos Frames</span>
+    <span class="logo-slot">Entropia Filmes</span>
+    <span class="logo-slot">Raça Livre Produções</span>
+    <span class="logo-slot">SetCom Produções</span>
+    <span class="logo-slot">Una Criatividade</span>
+    <span class="logo-slot">Arapy Produções</span>
+    <span class="logo-slot">Vila dos Frames</span>
+    <span class="logo-slot">Entropia Filmes</span>
+    <span class="logo-slot">Raça Livre Produções</span>
+    <span class="logo-slot">SetCom Produções</span>
+    <span class="logo-slot">Una Criatividade</span>
+  </div>
+</div>
+
+<section id="sobre">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Sobre</span>
+      <h2>Construindo imagem<br>a serviço da história.</h2>
+    </div>
+    <p class="section-note">Direção de Arte, Assistência de Direção e Colorização — um mesmo compromisso com a narrativa.</p>
+  </div>
+  <div class="about-grid">
+    <div>
+      <p>Gabriel Garcia é cineasta com 23 anos de atuação no mercado audiovisual. Graduado em Publicidade e Propaganda e pós-graduado em Cinema, transita entre Direção de Arte, Assistência de Direção e Colorização.</p>
+      <p>Integra a equipe de "Crisálida" (Arapy Produções), série exibida na TV Cultura e na Netflix Brasil, como Diretor de Arte e Assistente de Direção em duas temporadas e no longa-metragem. Assinou também a direção de arte dos curtas "O Silêncio dos Lobos" e "A Última Oração", ambos premiados no Catarinense de Cinema e LPG (2023).</p>
+      <p>Atua ainda como professor universitário em disciplinas de produção audiovisual, levando para a sala de aula a mesma experiência acumulada em set.</p>
+    </div>
+    <dl class="credentials">
+      <div><dt>Formação</dt><dd>Publicidade e Propaganda · Pós-graduação em Cinema</dd></div>
+      <div><dt>Base</dt><dd>Santa Catarina, Brasil</dd></div>
+      <div><dt>Disponibilidade</dt><dd>Projetos freelance — Brasil e remoto</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="arte">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">01 — Direção de Arte</span>
+      <h2>Ambientação, paleta<br>e composição.</h2>
+    </div>
+    <p class="section-note">Da concepção do universo visual à execução no set.</p>
+  </div>
+  <!-- Pôster: troque .poster-art por <img class="poster-art" src="assets/posters/nome.jpg" alt="..."> quando tiver a arte real -->
+  <div class="grid">
+    <a class="poster award" href="https://www.youtube.com/watch?v=zkIRJuMCcb4" target="_blank" rel="noopener">
+      <div class="poster-art"></div><div class="poster-shade"></div>
+      <div class="poster-info"><span class="yr">2019</span><h3>Crisálida — O Filme</h3><div class="studio">Arapy Produções · Longa-metragem</div><span class="tag">Netflix Brasil / TV Cultura</span><div class="go">Assistir</div></div>
+    </a>
+    <a class="poster" href="https://www.instagram.com/p/DPPHJPMAhA_/" target="_blank" rel="noopener">
+      <div class="poster-art"></div><div class="poster-shade"></div>
+      <div class="poster-info"><span class="yr">2023</span><h3>Crisálida — 2ª Temporada</h3><div class="studio">Arapy Produções · Série, 6 episódios</div><span class="tag">Netflix Brasil / TV Cultura</span><div class="go">Assistir</div></div>
+    </a>
+    <a class="poster" href="https://www.youtube.com/watch?v=C4j-FzNUo-8" target="_blank" rel="noopener">
+      <div class="poster-art"></div><div class="poster-shade"></div>
+      <div class="poster-info"><span class="yr">2017</span><h3>Crisálida — 1ª Temporada</h3><div class="studio">Arapy Produções · Série, 4 episódios</div><span class="tag">Ficção seriada</span><div class="go">Assistir</div></div>
+    </a>
+    <a class="poster award" href="https://www.youtube.com/watch?v=K9_3iMp36L0" target="_blank" rel="noopener">
+      <div class="poster-art"></div><div class="poster-shade"></div>
+      <div class="poster-info"><span class="yr">2024/25</span><h3>O Silêncio dos Lobos</h3><div class="studio">Vila dos Frames · Curta-metragem</div><span class="tag">Prêmio Catarinense &amp; LPG 2023</span><div class="go">Assistir</div></div>
+    </a>
+    <a class="poster award" href="https://youtu.be/eHtk5EDXYwA" target="_blank" rel="noopener">
+      <div class="poster-art"></div><div class="poster-shade"></div>
+      <div class="poster-info"><span class="yr">2024</span><h3>A Última Oração</h3><div class="studio">Vila dos Frames · Média-metragem</div><span class="tag">Prêmio Catarinense &amp; LPG 2023</span><div class="go">Assistir</div></div>
+    </a>
+  </div>
+</section>
+
+<section id="ad">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">02 — Assistência de Direção</span>
+      <h2>Ritmo de set,<br>equipe em sincronia.</h2>
+    </div>
+    <p class="section-note">Garantindo que a visão do diretor chegue inteira à tela.</p>
+  </div>
+  <div class="grid">
+    <a class="poster award" href="https://www.youtube.com/watch?v=zkIRJuMCcb4" target="_blank" rel="noopener">
+      <div class="poster-art"></div><div class="poster-shade"></div>
+      <div class="poster-info"><span class="yr">2019</span><h3>Crisálida — O Filme</h3><div class="studio">Arapy Produções · Longa-metragem</div><span class="tag">Netflix Brasil / TV Cultura</span><div class="go">Assistir</div></div>
+    </a>
+    <a class="poster" href="https://www.instagram.com/p/DPPHJPMAhA_/" target="_blank" rel="noopener">
+      <div class="poster-art"></div><div class="poster-shade"></div>
+      <div class="poster-info"><span class="yr">2023</span><h3>Crisálida — 2ª Temporada</h3><div class="studio">Arapy Produções · Série</div><span class="tag">Netflix Brasil / TV Cultura</span><div class="go">Assistir</div></div>
+    </a>
+    <a class="poster award" href="https://www.youtube.com/watch?v=9yzK9BXXvsA" target="_blank" rel="noopener">
+      <div class="poster-art"></div><div class="poster-shade"></div>
+      <div class="poster-info"><span class="yr">2023</span><h3>A Chuva Não Me Viu Passar</h3><div class="studio">Entropia Filmes · Curta-metragem</div><span class="tag">Edital Arnaldo Carreirão</span><div class="go">Assistir</div></div>
+    </a>
+    <a class="poster" href="https://tinyurl.com/srtx6k5n" target="_blank" rel="noopener">
+      <div class="poster-art"></div><div class="poster-shade"></div>
+      <div class="poster-info"><span class="yr">2025</span><h3>Imaginário Bar</h3><div class="studio">SetCom Produções · Curta-metragem</div><span class="tag">Ficção</span><div class="go">Assistir</div></div>
+    </a>
+  </div>
+</section>
+
+<section id="cor">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">03 — Colorização</span>
+      <h2>Cor como<br>narrativa.</h2>
+    </div>
+    <p class="section-note">Grades que reforçam a atmosfera de cada projeto — do contraste dramático ao naturalismo sutil.</p>
+  </div>
+  <div class="grid">
+    <a class="poster award" href="https://www.youtube.com/watch?v=K9_3iMp36L0" target="_blank" rel="noopener">
+      <div class="poster-art"></div><div class="poster-shade"></div>
+      <div class="poster-info"><span class="yr">2024/25</span><h3>O Silêncio dos Lobos</h3><div class="studio">Vila dos Frames · Curta-metragem</div><span class="tag">Prêmio Catarinense &amp; LPG 2023</span><div class="go">Assistir</div></div>
+    </a>
+    <div class="poster">
+      <div class="poster-art"></div><div class="poster-shade"></div>
+      <div class="poster-info"><span class="yr">2025</span><h3>11 Minutos</h3><div class="studio">Leandro Forgiarini · Curta-metragem</div><span class="tag">Colorização</span><div class="go" style="opacity:0.5;">Link em breve</div></div>
+    </div>
+    <a class="poster" href="https://www.youtube.com/watch?v=q-PwfgvkM7A" target="_blank" rel="noopener">
+      <div class="poster-art"></div><div class="poster-shade"></div>
+      <div class="poster-info"><span class="yr">2022</span><h3>Entre Paredes</h3><div class="studio">Raça Livre Produções · Curta-metragem</div><span class="tag">Colorização</span><div class="go">Assistir</div></div>
+    </a>
+  </div>
+</section>
+
+<section class="cta" id="contato">
+  <h2>Vamos trabalhar<br>no seu próximo projeto?</h2>
+  <p class="section-note" style="margin:0 auto; text-align:center;">Disponível para projetos freelance em Direção de Arte, 1º AD e Colorização — Brasil e remoto.</p>
+  <div class="cta-links">
+    <a href="mailto:seuemail@exemplo.com">E-mail</a>
+    <a href="https://wa.me/55SEUNUMERO" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://www.instagram.com/gabrielmoicas/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/gabrielgarciacinema/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</section>
+
+<footer>
+  <span>© Gabriel Garcia — Cinema</span>
+  <span>Santa Catarina, Brasil</span>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('nav');
+  if(toggle){
+    toggle.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  }
+
+  // Vídeo de fundo: pausa se o usuário preferir menos movimento,
+  // e esconde a tag caso o arquivo assets/reel.mp4 ainda não exista.
+  const heroVideo = document.querySelector('.hero-video');
+  if(heroVideo){
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduceMotion){
+      heroVideo.pause();
+      heroVideo.style.display = 'none';
+    }
+    heroVideo.addEventListener('error', () => { heroVideo.style.display = 'none'; });
+  }
+</script>
+
+</body>
+</html>
