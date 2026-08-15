@@ -152,18 +152,16 @@
   h2{font-family:var(--display); font-weight:500; font-size:clamp(2rem,4.5vw,3.2rem); letter-spacing:-0.01em;}
   .section-note{font-family:var(--body); color:var(--ink-muted); max-width:34ch; font-size:0.95rem;}
 
-  /* ---------- SOBRE (centralizado) ---------- */
-  .about-centered{max-width:720px; margin:0 auto; text-align:center;}
+  /* ---------- SOBRE (bloco centralizado na página, texto alinhado à esquerda) ---------- */
+  .about-centered{max-width:640px; margin:0 auto; text-align:left;}
   .about-centered p{color:var(--ink-muted); font-size:1.02rem; margin-bottom:1.2em;}
   .about-centered p:first-child{color:var(--ink); font-size:1.2rem; font-family:var(--display); line-height:1.4;}
   .credentials-row{
     margin-top:30px; padding-top:26px; border-top:1px solid var(--line);
-    display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
-    font-family:var(--mono); font-size:0.78rem; color:var(--ink-muted); letter-spacing:0.02em;
+    display:flex; flex-direction:column; gap:18px; align-items:flex-start; text-align:left;
   }
-  .credentials-row span{padding:0 16px;}
+  .credentials-row span{padding:0; font-family:var(--mono); font-size:0.82rem; color:var(--ink-muted); letter-spacing:0.02em;}
   .credentials-row b{color:var(--amber); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; font-size:0.68rem; display:block; margin-bottom:4px;}
-  .credentials-row span:not(:last-child)::after{content:'•'; position:relative; left:16px; color:var(--amber);}
 
   /* ---------- PROJECT POSTERS ---------- */
   .poster{
@@ -316,6 +314,12 @@
     <button type="button" class="poster" data-yt="q-PwfgvkM7A" data-title="Entre Paredes" data-year="2022" data-studio="Raça Livre Produções · Curta-metragem · Colorização" data-tag="Colorização">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/entre-paredes.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
+    <button type="button" class="poster" data-title="Nova Honda Sahara" data-studio="Boiler Filmes e Yatta" data-tag="3º Assistente de Direção">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/nova-honda-sahara.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-title="Crisálida — Curta-metragem" data-studio="Curta-metragem" data-tag="1º Assistente de Direção">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-curta-metragem.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
     <!-- faixa duplicada para o loop ficar contínuo -->
     <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-year="2019" data-studio="Arapy Produções · Longa-metragem · Direção de Arte, Assistência de Direção" data-tag="Netflix Brasil / TV Cultura">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-filme.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
@@ -344,6 +348,12 @@
     <button type="button" class="poster" data-yt="q-PwfgvkM7A" data-title="Entre Paredes" data-year="2022" data-studio="Raça Livre Produções · Curta-metragem · Colorização" data-tag="Colorização">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/entre-paredes.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
+    <button type="button" class="poster" data-title="Nova Honda Sahara" data-studio="Boiler Filmes e Yatta" data-tag="3º Assistente de Direção">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/nova-honda-sahara.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-title="Crisálida — Curta-metragem" data-studio="Curta-metragem" data-tag="1º Assistente de Direção">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-curta-metragem.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
   </div>
 </div>
 
@@ -359,12 +369,24 @@
     <span class="logo-slot"><img src="assets/logos/raca-livre.png" alt="Raça Livre Produções" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Raça Livre Produções</span></span>
     <span class="logo-slot"><img src="assets/logos/setcom.png" alt="SetCom Produções" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">SetCom Produções</span></span>
     <span class="logo-slot"><img src="assets/logos/una-criatividade.png" alt="Una Criatividade" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Una Criatividade</span></span>
+    <span class="logo-slot"><img src="assets/logos/30-por-segundo.png" alt="30 por Segundo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">30 por Segundo</span></span>
+    <span class="logo-slot"><img src="assets/logos/boiler.png" alt="Boiler Filmes" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Boiler Filmes</span></span>
+    <span class="logo-slot"><img src="assets/logos/manaca.png" alt="Manacá" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Manacá</span></span>
+    <span class="logo-slot"><img src="assets/logos/ressonante.png" alt="Ressonante" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Ressonante</span></span>
+    <span class="logo-slot"><img src="assets/logos/tvi.png" alt="TVI" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">TVI</span></span>
+    <span class="logo-slot"><img src="assets/logos/yatta.png" alt="Yatta" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Yatta</span></span>
     <span class="logo-slot"><img src="assets/logos/arapy.png" alt="Arapy Produções" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Arapy Produções</span></span>
     <span class="logo-slot"><img src="assets/logos/vila-dos-frames.png" alt="Vila dos Frames" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Vila dos Frames</span></span>
     <span class="logo-slot"><img src="assets/logos/entropia-filmes.png" alt="Entropia Filmes" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Entropia Filmes</span></span>
     <span class="logo-slot"><img src="assets/logos/raca-livre.png" alt="Raça Livre Produções" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Raça Livre Produções</span></span>
     <span class="logo-slot"><img src="assets/logos/setcom.png" alt="SetCom Produções" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">SetCom Produções</span></span>
     <span class="logo-slot"><img src="assets/logos/una-criatividade.png" alt="Una Criatividade" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Una Criatividade</span></span>
+    <span class="logo-slot"><img src="assets/logos/30-por-segundo.png" alt="30 por Segundo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">30 por Segundo</span></span>
+    <span class="logo-slot"><img src="assets/logos/boiler.png" alt="Boiler Filmes" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Boiler Filmes</span></span>
+    <span class="logo-slot"><img src="assets/logos/manaca.png" alt="Manacá" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Manacá</span></span>
+    <span class="logo-slot"><img src="assets/logos/ressonante.png" alt="Ressonante" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Ressonante</span></span>
+    <span class="logo-slot"><img src="assets/logos/tvi.png" alt="TVI" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">TVI</span></span>
+    <span class="logo-slot"><img src="assets/logos/yatta.png" alt="Yatta" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Yatta</span></span>
   </div>
 </div>
 
