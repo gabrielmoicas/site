@@ -102,11 +102,22 @@
     content:'•'; display:inline-block; color:var(--amber); margin:0 14px; transform:translateY(-1px);
   }
 
+  /* ---------- FILMS MARQUEE (todos os pôsteres, faixa única) ---------- */
+  .films-wrap{
+    border-bottom:1px solid var(--line); overflow:hidden; padding:34px 0;
+  }
+  .films-track{
+    display:flex; width:max-content; gap:20px; animation:scroll 60s linear infinite;
+  }
+  .films-track:hover{animation-play-state:paused;}
+  .films-track .poster{width:190px; flex:0 0 auto;}
+
   /* ---------- MARQUEE (logos de produtoras) ---------- */
   .marquee-wrap{
     border-bottom:1px solid var(--line); background:var(--bg-soft); overflow:hidden; padding:26px 0;
   }
-  .marquee{display:flex; width:max-content; gap:72px; animation:scroll 28s linear infinite; align-items:center;}
+  .marquee{display:flex; width:max-content; gap:72px; animation:scroll 28s linear infinite reverse; align-items:center;}
+  .marquee:hover{animation-play-state:paused;}
   .logo-slot{
     height:28px; padding:0 4px;
     display:flex; align-items:center; justify-content:center;
@@ -124,11 +135,15 @@
   @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
 
   /* ---------- SECTION SHELL ---------- */
-  section{padding:clamp(64px,10vw,140px) 5vw;}
+  section{padding:clamp(56px,8vw,110px) 5vw;}
   .section-head{
     display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap;
     margin-bottom:clamp(36px,5vw,64px);
     border-bottom:1px solid var(--line); padding-bottom:24px;
+  }
+  .section-head-center{
+    text-align:center; display:flex; flex-direction:column; align-items:center;
+    margin-bottom:clamp(28px,4vw,48px);
   }
   .eyebrow{
     font-family:var(--mono); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--amber);
@@ -137,16 +152,20 @@
   h2{font-family:var(--display); font-weight:500; font-size:clamp(2rem,4.5vw,3.2rem); letter-spacing:-0.01em;}
   .section-note{font-family:var(--body); color:var(--ink-muted); max-width:34ch; font-size:0.95rem;}
 
-  /* ---------- SOBRE ---------- */
-  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:clamp(32px,6vw,80px);}
-  .about-grid p{color:var(--ink-muted); font-size:1.05rem; max-width:62ch; margin-bottom:1.2em;}
-  .about-grid p:first-child{color:var(--ink); font-size:1.2rem; font-family:var(--display); line-height:1.4;}
-  .credentials{border-left:1px solid var(--line); padding-left:28px; display:flex; flex-direction:column; gap:22px;}
-  .credentials dt{font-family:var(--mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber); margin-bottom:4px;}
-  .credentials dd{color:var(--ink-muted); font-size:0.92rem;}
+  /* ---------- SOBRE (centralizado) ---------- */
+  .about-centered{max-width:720px; margin:0 auto; text-align:center;}
+  .about-centered p{color:var(--ink-muted); font-size:1.02rem; margin-bottom:1.2em;}
+  .about-centered p:first-child{color:var(--ink); font-size:1.2rem; font-family:var(--display); line-height:1.4;}
+  .credentials-row{
+    margin-top:30px; padding-top:26px; border-top:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
+    font-family:var(--mono); font-size:0.78rem; color:var(--ink-muted); letter-spacing:0.02em;
+  }
+  .credentials-row span{padding:0 16px;}
+  .credentials-row b{color:var(--amber); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; font-size:0.68rem; display:block; margin-bottom:4px;}
+  .credentials-row span:not(:last-child)::after{content:'•'; position:relative; left:16px; color:var(--amber);}
 
-  /* ---------- PROJECT GRID (pôsteres) ---------- */
-  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:22px;}
+  /* ---------- PROJECT POSTERS ---------- */
   .poster{
     position:relative; aspect-ratio:2/3; overflow:hidden; display:block; width:100%;
     border:1px solid var(--line); background:var(--bg-soft);
@@ -231,12 +250,11 @@
   }
 
   @media (max-width:760px){
-    .about-grid{grid-template-columns:1fr;}
-    .credentials{border-left:none; border-top:1px solid var(--line); padding-left:0; padding-top:24px;}
     header{padding:18px 6vw;}
     nav{position:fixed; top:0; right:0; height:100vh; width:min(78vw,320px); background:var(--bg); flex-direction:column; justify-content:center; align-items:flex-start; padding:0 40px; transform:translateX(100%); transition:transform 0.4s ease; gap:26px; mix-blend-mode:normal; border-left:1px solid var(--line);}
     nav.open{transform:translateX(0);}
     .nav-toggle{display:block; background:none; border:none; color:var(--ink); font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; z-index:60; mix-blend-mode:difference;}
+    .films-track .poster{width:140px;}
   }
 </style>
 </head>
@@ -249,9 +267,7 @@
   <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">MENU</button>
   <nav id="nav">
     <a href="#sobre">Sobre</a>
-    <a href="#arte">Direção de Arte</a>
-    <a href="#ad">Assistência de Direção</a>
-    <a href="#cor">Colorização</a>
+    <a href="#trabalhos">Trabalhos</a>
     <a href="#contato">Contato</a>
   </nav>
 </header>
@@ -268,9 +284,73 @@
   </div>
 </section>
 
+<!-- Sistema de pôsteres: coloque cada arquivo em assets/posters/ com o nome indicado no src.
+     Se o arquivo não existir, o fundo em gradiente com "GG" aparece no lugar (fallback automático).
+     Clique em qualquer pôster abre o player + ficha técnica. Todos os trabalhos ficam juntos, nesta faixa única. -->
+<div class="films-wrap" id="trabalhos">
+  <div class="films-track">
+    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-year="2019" data-studio="Arapy Produções · Longa-metragem · Direção de Arte, Assistência de Direção" data-tag="Netflix Brasil / TV Cultura">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-filme.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-url="https://www.instagram.com/p/DPPHJPMAhA_/" data-title="Crisálida — 2ª Temporada" data-year="2023" data-studio="Arapy Produções · Série, 6 episódios · Direção de Arte, Assistência de Direção" data-tag="Netflix Brasil / TV Cultura">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t2.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-yt="C4j-FzNUo-8" data-title="Crisálida — 1ª Temporada" data-year="2017" data-studio="Arapy Produções · Série, 4 episódios · Direção de Arte" data-tag="Ficção seriada">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t1.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster award" data-yt="K9_3iMp36L0" data-title="O Silêncio dos Lobos" data-year="2024/25" data-studio="Vila dos Frames · Curta-metragem · Direção de Arte, Colorização" data-tag="Prêmio Catarinense &amp; LPG 2023">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/silencio-dos-lobos.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster award" data-yt="eHtk5EDXYwA" data-title="A Última Oração" data-year="2024" data-studio="Vila dos Frames · Média-metragem · Direção de Arte" data-tag="Prêmio Catarinense &amp; LPG 2023">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-ultima-oracao.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster award" data-yt="9yzK9BXXvsA" data-title="A Chuva Não Me Viu Passar" data-year="2023" data-studio="Entropia Filmes · Curta-metragem · Assistência de Direção" data-tag="Edital Arnaldo Carreirão">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-chuva-nao-me-viu-passar.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-url="https://tinyurl.com/srtx6k5n" data-title="Imaginário Bar" data-year="2025" data-studio="SetCom Produções · Curta-metragem · Assistência de Direção" data-tag="Ficção">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/imaginario-bar.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-title="11 Minutos" data-year="2025" data-studio="Leandro Forgiarini · Curta-metragem · Colorização" data-tag="Colorização">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/11-minutos.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-yt="q-PwfgvkM7A" data-title="Entre Paredes" data-year="2022" data-studio="Raça Livre Produções · Curta-metragem · Colorização" data-tag="Colorização">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/entre-paredes.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <!-- faixa duplicada para o loop ficar contínuo -->
+    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-year="2019" data-studio="Arapy Produções · Longa-metragem · Direção de Arte, Assistência de Direção" data-tag="Netflix Brasil / TV Cultura">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-filme.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-url="https://www.instagram.com/p/DPPHJPMAhA_/" data-title="Crisálida — 2ª Temporada" data-year="2023" data-studio="Arapy Produções · Série, 6 episódios · Direção de Arte, Assistência de Direção" data-tag="Netflix Brasil / TV Cultura">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t2.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-yt="C4j-FzNUo-8" data-title="Crisálida — 1ª Temporada" data-year="2017" data-studio="Arapy Produções · Série, 4 episódios · Direção de Arte" data-tag="Ficção seriada">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t1.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster award" data-yt="K9_3iMp36L0" data-title="O Silêncio dos Lobos" data-year="2024/25" data-studio="Vila dos Frames · Curta-metragem · Direção de Arte, Colorização" data-tag="Prêmio Catarinense &amp; LPG 2023">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/silencio-dos-lobos.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster award" data-yt="eHtk5EDXYwA" data-title="A Última Oração" data-year="2024" data-studio="Vila dos Frames · Média-metragem · Direção de Arte" data-tag="Prêmio Catarinense &amp; LPG 2023">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-ultima-oracao.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster award" data-yt="9yzK9BXXvsA" data-title="A Chuva Não Me Viu Passar" data-year="2023" data-studio="Entropia Filmes · Curta-metragem · Assistência de Direção" data-tag="Edital Arnaldo Carreirão">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-chuva-nao-me-viu-passar.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-url="https://tinyurl.com/srtx6k5n" data-title="Imaginário Bar" data-year="2025" data-studio="SetCom Produções · Curta-metragem · Assistência de Direção" data-tag="Ficção">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/imaginario-bar.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-title="11 Minutos" data-year="2025" data-studio="Leandro Forgiarini · Curta-metragem · Colorização" data-tag="Colorização">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/11-minutos.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-yt="q-PwfgvkM7A" data-title="Entre Paredes" data-year="2022" data-studio="Raça Livre Produções · Curta-metragem · Colorização" data-tag="Colorização">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/entre-paredes.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+  </div>
+</div>
+
 <!-- Sistema de logos: coloque cada arquivo em assets/logos/ com o nome indicado no src.
      Se o arquivo não existir, o nome da produtora aparece como texto (fallback automático).
-     Formato recomendado: PNG com fundo transparente. O filtro CSS já força a cor para off-white. -->
+     Formato recomendado: PNG com fundo transparente. O filtro CSS já força a cor para off-white.
+     Faixa rola no sentido contrário à dos pôsteres acima. -->
 <div class="marquee-wrap">
   <div class="marquee" id="logoMarquee">
     <span class="logo-slot"><img src="assets/logos/arapy.png" alt="Arapy Produções" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Arapy Produções</span></span>
@@ -289,134 +369,19 @@
 </div>
 
 <section id="sobre">
-  <div class="section-head">
-    <div>
-      <span class="eyebrow">Sobre</span>
-      <h2>Construindo imagem<br>a serviço da história.</h2>
+  <div class="section-head-center">
+    <span class="eyebrow">Sobre</span>
+    <h2>Construindo imagem<br>a serviço da história.</h2>
+  </div>
+  <div class="about-centered">
+    <p>Gabriel Garcia é cineasta com 23 anos de atuação no mercado audiovisual. Graduado em Publicidade e Propaganda e pós-graduado em Cinema, transita entre Direção de Arte, Assistência de Direção e Colorização.</p>
+    <p>Integra a equipe de "Crisálida" (Arapy Produções), série exibida na TV Cultura e na Netflix Brasil, como Diretor de Arte e Assistente de Direção em duas temporadas e no longa-metragem. Assinou também a direção de arte dos curtas "O Silêncio dos Lobos" e "A Última Oração", ambos premiados no Catarinense de Cinema e LPG (2023).</p>
+    <p>Atua ainda como professor universitário em disciplinas de produção audiovisual, levando para a sala de aula a mesma experiência acumulada em set.</p>
+    <div class="credentials-row">
+      <span><b>Formação</b>Publicidade e Propaganda · Pós-graduação em Cinema</span>
+      <span><b>Base</b>Santa Catarina, Brasil</span>
+      <span><b>Disponibilidade</b>Projetos freelance — Brasil e remoto</span>
     </div>
-    <p class="section-note">Direção de Arte, Assistência de Direção e Colorização — um mesmo compromisso com a narrativa.</p>
-  </div>
-  <div class="about-grid">
-    <div>
-      <p>Gabriel Garcia é cineasta com 23 anos de atuação no mercado audiovisual. Graduado em Publicidade e Propaganda e pós-graduado em Cinema, transita entre Direção de Arte, Assistência de Direção e Colorização.</p>
-      <p>Integra a equipe de "Crisálida" (Arapy Produções), série exibida na TV Cultura e na Netflix Brasil, como Diretor de Arte e Assistente de Direção em duas temporadas e no longa-metragem. Assinou também a direção de arte dos curtas "O Silêncio dos Lobos" e "A Última Oração", ambos premiados no Catarinense de Cinema e LPG (2023).</p>
-      <p>Atua ainda como professor universitário em disciplinas de produção audiovisual, levando para a sala de aula a mesma experiência acumulada em set.</p>
-    </div>
-    <dl class="credentials">
-      <div><dt>Formação</dt><dd>Publicidade e Propaganda · Pós-graduação em Cinema</dd></div>
-      <div><dt>Base</dt><dd>Santa Catarina, Brasil</dd></div>
-      <div><dt>Disponibilidade</dt><dd>Projetos freelance — Brasil e remoto</dd></div>
-    </dl>
-  </div>
-</section>
-
-<section id="arte">
-  <div class="section-head">
-    <div>
-      <span class="eyebrow">01 — Direção de Arte</span>
-      <h2>Ambientação, paleta<br>e composição.</h2>
-    </div>
-    <p class="section-note">Da concepção do universo visual à execução no set.</p>
-  </div>
-  <!-- Sistema de pôsteres: coloque cada arquivo em assets/posters/ com o nome indicado no src.
-       Se o arquivo não existir, o fundo em gradiente com "GG" aparece no lugar (fallback automático). -->
-  <div class="grid">
-    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-year="2019" data-studio="Arapy Produções · Longa-metragem" data-tag="Netflix Brasil / TV Cultura">
-      <div class="poster-art"></div>
-      <img class="poster-img" src="assets/posters/crisalida-filme.jpg" alt="" onerror="this.remove()">
-      <div class="poster-shade"></div>
-      <div class="poster-info"><span class="go">Assistir</span></div>
-    </button>
-    <button type="button" class="poster" data-url="https://www.instagram.com/p/DPPHJPMAhA_/" data-title="Crisálida — 2ª Temporada" data-year="2023" data-studio="Arapy Produções · Série, 6 episódios" data-tag="Netflix Brasil / TV Cultura">
-      <div class="poster-art"></div>
-      <img class="poster-img" src="assets/posters/crisalida-t2.jpg" alt="" onerror="this.remove()">
-      <div class="poster-shade"></div>
-      <div class="poster-info"><span class="go">Assistir</span></div>
-    </button>
-    <button type="button" class="poster" data-yt="C4j-FzNUo-8" data-title="Crisálida — 1ª Temporada" data-year="2017" data-studio="Arapy Produções · Série, 4 episódios" data-tag="Ficção seriada">
-      <div class="poster-art"></div>
-      <img class="poster-img" src="assets/posters/crisalida-t1.jpg" alt="" onerror="this.remove()">
-      <div class="poster-shade"></div>
-      <div class="poster-info"><span class="go">Assistir</span></div>
-    </button>
-    <button type="button" class="poster award" data-yt="K9_3iMp36L0" data-title="O Silêncio dos Lobos" data-year="2024/25" data-studio="Vila dos Frames · Curta-metragem" data-tag="Prêmio Catarinense &amp; LPG 2023">
-      <div class="poster-art"></div>
-      <img class="poster-img" src="assets/posters/silencio-dos-lobos.jpg" alt="" onerror="this.remove()">
-      <div class="poster-shade"></div>
-      <div class="poster-info"><span class="go">Assistir</span></div>
-    </button>
-    <button type="button" class="poster award" data-yt="eHtk5EDXYwA" data-title="A Última Oração" data-year="2024" data-studio="Vila dos Frames · Média-metragem" data-tag="Prêmio Catarinense &amp; LPG 2023">
-      <div class="poster-art"></div>
-      <img class="poster-img" src="assets/posters/a-ultima-oracao.jpg" alt="" onerror="this.remove()">
-      <div class="poster-shade"></div>
-      <div class="poster-info"><span class="go">Assistir</span></div>
-    </button>
-  </div>
-</section>
-
-<section id="ad">
-  <div class="section-head">
-    <div>
-      <span class="eyebrow">02 — Assistência de Direção</span>
-      <h2>Ritmo de set,<br>equipe em sincronia.</h2>
-    </div>
-    <p class="section-note">Garantindo que a visão do diretor chegue inteira à tela.</p>
-  </div>
-  <div class="grid">
-    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-year="2019" data-studio="Arapy Produções · Longa-metragem" data-tag="Netflix Brasil / TV Cultura">
-      <div class="poster-art"></div>
-      <img class="poster-img" src="assets/posters/crisalida-filme.jpg" alt="" onerror="this.remove()">
-      <div class="poster-shade"></div>
-      <div class="poster-info"><span class="go">Assistir</span></div>
-    </button>
-    <button type="button" class="poster" data-url="https://www.instagram.com/p/DPPHJPMAhA_/" data-title="Crisálida — 2ª Temporada" data-year="2023" data-studio="Arapy Produções · Série" data-tag="Netflix Brasil / TV Cultura">
-      <div class="poster-art"></div>
-      <img class="poster-img" src="assets/posters/crisalida-t2.jpg" alt="" onerror="this.remove()">
-      <div class="poster-shade"></div>
-      <div class="poster-info"><span class="go">Assistir</span></div>
-    </button>
-    <button type="button" class="poster award" data-yt="9yzK9BXXvsA" data-title="A Chuva Não Me Viu Passar" data-year="2023" data-studio="Entropia Filmes · Curta-metragem" data-tag="Edital Arnaldo Carreirão">
-      <div class="poster-art"></div>
-      <img class="poster-img" src="assets/posters/a-chuva-nao-me-viu-passar.jpg" alt="" onerror="this.remove()">
-      <div class="poster-shade"></div>
-      <div class="poster-info"><span class="go">Assistir</span></div>
-    </button>
-    <button type="button" class="poster" data-url="https://tinyurl.com/srtx6k5n" data-title="Imaginário Bar" data-year="2025" data-studio="SetCom Produções · Curta-metragem" data-tag="Ficção">
-      <div class="poster-art"></div>
-      <img class="poster-img" src="assets/posters/imaginario-bar.jpg" alt="" onerror="this.remove()">
-      <div class="poster-shade"></div>
-      <div class="poster-info"><span class="go">Assistir</span></div>
-    </button>
-  </div>
-</section>
-
-<section id="cor">
-  <div class="section-head">
-    <div>
-      <span class="eyebrow">03 — Colorização</span>
-      <h2>Cor como<br>narrativa.</h2>
-    </div>
-    <p class="section-note">Grades que reforçam a atmosfera de cada projeto — do contraste dramático ao naturalismo sutil.</p>
-  </div>
-  <div class="grid">
-    <button type="button" class="poster award" data-yt="K9_3iMp36L0" data-title="O Silêncio dos Lobos" data-year="2024/25" data-studio="Vila dos Frames · Curta-metragem" data-tag="Prêmio Catarinense &amp; LPG 2023">
-      <div class="poster-art"></div>
-      <img class="poster-img" src="assets/posters/silencio-dos-lobos.jpg" alt="" onerror="this.remove()">
-      <div class="poster-shade"></div>
-      <div class="poster-info"><span class="go">Assistir</span></div>
-    </button>
-    <button type="button" class="poster" data-title="11 Minutos" data-year="2025" data-studio="Leandro Forgiarini · Curta-metragem" data-tag="Colorização">
-      <div class="poster-art"></div>
-      <img class="poster-img" src="assets/posters/11-minutos.jpg" alt="" onerror="this.remove()">
-      <div class="poster-shade"></div>
-      <div class="poster-info"><span class="go">Assistir</span></div>
-    </button>
-    <button type="button" class="poster" data-yt="q-PwfgvkM7A" data-title="Entre Paredes" data-year="2022" data-studio="Raça Livre Produções · Curta-metragem" data-tag="Colorização">
-      <div class="poster-art"></div>
-      <img class="poster-img" src="assets/posters/entre-paredes.jpg" alt="" onerror="this.remove()">
-      <div class="poster-shade"></div>
-      <div class="poster-info"><span class="go">Assistir</span></div>
-    </button>
   </div>
 </section>
 
