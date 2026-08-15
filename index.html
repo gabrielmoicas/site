@@ -71,35 +71,35 @@
   /* ---------- HERO ---------- */
   .hero{
     min-height:100svh;
-    display:flex; flex-direction:column; justify-content:flex-end;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
     position:relative;
-    padding:0 5vw 64px;
+    padding:0 5vw;
     background:var(--bg);
     border-bottom:1px solid var(--line);
     overflow:hidden;
+    text-align:center;
   }
   .hero-video{
     position:absolute; inset:0; width:100%; height:100%;
     object-fit:cover; z-index:0;
     filter:saturate(1.05) contrast(1.02);
   }
-  .hero-overlay{
-    position:absolute; inset:0; z-index:1;
-    background:
-      linear-gradient(180deg, rgba(11,15,13,0.35) 0%, rgba(11,15,13,0.55) 55%, rgba(11,15,13,0.92) 100%),
-      radial-gradient(ellipse 90% 60% at 20% 0%, rgba(44,74,71,0.45), transparent 60%),
-      radial-gradient(ellipse 70% 50% at 85% 15%, rgba(201,119,43,0.18), transparent 55%);
-  }
-  .hero > *:not(.hero-video):not(.hero-overlay){position:relative; z-index:2;}
+  .hero > *:not(.hero-video){position:relative; z-index:2;}
   h1.hero-title{
     font-family:var(--display); font-weight:500;
     font-size:clamp(3rem, 9vw, 7.2rem); line-height:0.94; letter-spacing:-0.01em;
     color:var(--ink);
+    text-shadow:0 2px 24px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.6);
   }
   .roles{
     margin-top:28px;
     font-family:var(--mono); font-size:clamp(0.85rem,1.6vw,1.05rem); letter-spacing:0.04em;
     color:var(--ink-muted); text-transform:uppercase;
+    display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
+    text-shadow:0 1px 12px rgba(0,0,0,0.6);
+  }
+  .roles span:not(:last-child)::after{
+    content:'•'; display:inline-block; color:var(--amber); margin:0 14px; transform:translateY(-1px);
   }
 
   /* ---------- MARQUEE (logos de produtoras) ---------- */
@@ -110,9 +110,16 @@
   .logo-slot{
     height:28px; padding:0 4px;
     display:flex; align-items:center; justify-content:center;
+    white-space:nowrap;
+  }
+  .logo-slot img{
+    height:100%; width:auto; object-fit:contain;
+    filter:brightness(0) invert(1); opacity:0.6; /* força qualquer logo para off-white */
+  }
+  .logo-fallback{
+    display:none;
     font-family:var(--mono); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--ink); opacity:0.55; white-space:nowrap;
-    filter:grayscale(1) brightness(1.4);
+    color:var(--ink); opacity:0.55;
   }
   @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
 
@@ -141,8 +148,10 @@
   /* ---------- PROJECT GRID (pôsteres) ---------- */
   .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:22px;}
   .poster{
-    position:relative; aspect-ratio:2/3; overflow:hidden; display:block;
+    position:relative; aspect-ratio:2/3; overflow:hidden; display:block; width:100%;
     border:1px solid var(--line); background:var(--bg-soft);
+    appearance:none; -webkit-appearance:none; padding:0; margin:0; font:inherit; color:inherit;
+    cursor:pointer;
   }
   .poster-art{
     position:absolute; inset:0; z-index:0;
@@ -154,27 +163,57 @@
     font-family:var(--display); font-weight:600; font-size:3.4rem; letter-spacing:0.04em;
     color:rgba(242,237,228,0.07);
   }
-  .poster:hover .poster-art{transform:scale(1.05);}
+  .poster-img{
+    position:absolute; inset:0; z-index:0; width:100%; height:100%; object-fit:cover;
+    transition:transform 0.6s ease;
+  }
+  .poster:hover .poster-art, .poster:hover .poster-img{transform:scale(1.05);}
   .poster-shade{
     position:absolute; inset:0; z-index:1;
-    background:linear-gradient(180deg, transparent 38%, rgba(11,15,13,0.94) 100%);
+    background:rgba(11,15,13,0.55);
+    opacity:0; transition:opacity 0.3s ease;
   }
-  .poster-info{position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:flex-end; padding:18px;}
-  .poster-info .yr{font-family:var(--mono); font-size:0.68rem; color:var(--amber); letter-spacing:0.06em;}
-  .poster-info h3{font-family:var(--display); font-weight:500; font-size:1.15rem; margin:8px 0 6px; line-height:1.18;}
-  .poster-info .studio{font-size:0.76rem; color:var(--ink-muted); margin-bottom:12px;}
-  .poster-info .tag{
-    font-family:var(--mono); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-muted);
-    border:1px solid var(--line); padding:4px 8px; display:inline-block; width:fit-content; margin-bottom:12px;
+  .poster:hover .poster-shade, .poster:focus-visible .poster-shade{opacity:1;}
+  .poster-info{
+    position:relative; z-index:2; height:100%;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; transition:opacity 0.3s ease;
   }
+  .poster:hover .poster-info, .poster:focus-visible .poster-info{opacity:1;}
   .poster-info .go{
-    font-family:var(--mono); font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase;
-    display:flex; align-items:center; gap:6px; color:var(--ink);
+    font-family:var(--mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink);
+    border:1px solid var(--ink); padding:10px 20px;
   }
-  .poster-info .go::after{content:'→'; transition:transform 0.3s ease;}
-  .poster:hover .poster-info .go::after{transform:translateX(6px);}
   .poster.award{border-color:var(--amber);}
-  .poster.award .tag{border-color:var(--amber); color:var(--amber);}
+
+  /* ---------- MODAL (player + ficha técnica) ---------- */
+  .modal{
+    position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center;
+    padding:5vw; opacity:0; pointer-events:none; transition:opacity 0.3s ease;
+  }
+  .modal.open{opacity:1; pointer-events:auto;}
+  .modal-backdrop{position:absolute; inset:0; background:rgba(6,8,7,0.92); backdrop-filter:blur(4px);}
+  .modal-panel{
+    position:relative; z-index:1; width:min(880px,100%); max-height:90vh; overflow-y:auto;
+    background:var(--panel); border:1px solid var(--line);
+  }
+  .modal-close{
+    position:absolute; top:14px; right:14px; z-index:3;
+    background:var(--bg); border:1px solid var(--line); color:var(--ink);
+    width:36px; height:36px; border-radius:50%; cursor:pointer; font-size:1rem; line-height:1;
+  }
+  .modal-video{position:relative; width:100%; aspect-ratio:16/9; background:#000; z-index:1;}
+  .modal-video iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
+  .modal-video .modal-link{
+    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+    color:var(--ink-muted); font-family:var(--mono); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; text-align:center; padding:20px;
+  }
+  .modal-video .modal-link a{border:1px solid var(--amber); color:var(--amber); padding:10px 22px;}
+  .modal-sheet{padding:28px 32px 34px;}
+  .modal-sheet h3{font-family:var(--display); font-weight:500; font-size:1.6rem; margin-bottom:18px; line-height:1.2;}
+  .modal-sheet dl{display:grid; grid-template-columns:auto 1fr; gap:10px 22px; align-items:start;}
+  .modal-sheet dt{font-family:var(--mono); font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); padding-top:2px;}
+  .modal-sheet dd{color:var(--ink-muted); font-size:0.92rem;}
 
   /* ---------- CTA / CONTATO ---------- */
   .cta{
@@ -221,28 +260,31 @@
   <video class="hero-video" autoplay muted loop playsinline poster="assets/reel-poster.jpg">
     <source src="assets/reel.mp4" type="video/mp4">
   </video>
-  <div class="hero-overlay"></div>
   <h1 class="hero-title">GABRIEL<br>GARCIA</h1>
   <div class="roles">
-    <span>Direção de Arte, Assistência de Direção, Colorização</span>
+    <span>Direção de Arte</span>
+    <span>Assistência de Direção</span>
+    <span>Colorização</span>
   </div>
 </section>
 
-<!-- Faixa de logos de produtoras. Troque cada .logo-slot por <img src="assets/logos/nome.png" alt="Nome da Produtora"> quando tiver os arquivos (logos em off-white, fundo transparente). -->
+<!-- Sistema de logos: coloque cada arquivo em assets/logos/ com o nome indicado no src.
+     Se o arquivo não existir, o nome da produtora aparece como texto (fallback automático).
+     Formato recomendado: PNG com fundo transparente. O filtro CSS já força a cor para off-white. -->
 <div class="marquee-wrap">
-  <div class="marquee">
-    <span class="logo-slot">Arapy Produções</span>
-    <span class="logo-slot">Vila dos Frames</span>
-    <span class="logo-slot">Entropia Filmes</span>
-    <span class="logo-slot">Raça Livre Produções</span>
-    <span class="logo-slot">SetCom Produções</span>
-    <span class="logo-slot">Una Criatividade</span>
-    <span class="logo-slot">Arapy Produções</span>
-    <span class="logo-slot">Vila dos Frames</span>
-    <span class="logo-slot">Entropia Filmes</span>
-    <span class="logo-slot">Raça Livre Produções</span>
-    <span class="logo-slot">SetCom Produções</span>
-    <span class="logo-slot">Una Criatividade</span>
+  <div class="marquee" id="logoMarquee">
+    <span class="logo-slot"><img src="assets/logos/arapy.png" alt="Arapy Produções" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Arapy Produções</span></span>
+    <span class="logo-slot"><img src="assets/logos/vila-dos-frames.png" alt="Vila dos Frames" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Vila dos Frames</span></span>
+    <span class="logo-slot"><img src="assets/logos/entropia-filmes.png" alt="Entropia Filmes" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Entropia Filmes</span></span>
+    <span class="logo-slot"><img src="assets/logos/raca-livre.png" alt="Raça Livre Produções" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Raça Livre Produções</span></span>
+    <span class="logo-slot"><img src="assets/logos/setcom.png" alt="SetCom Produções" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">SetCom Produções</span></span>
+    <span class="logo-slot"><img src="assets/logos/una-criatividade.png" alt="Una Criatividade" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Una Criatividade</span></span>
+    <span class="logo-slot"><img src="assets/logos/arapy.png" alt="Arapy Produções" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Arapy Produções</span></span>
+    <span class="logo-slot"><img src="assets/logos/vila-dos-frames.png" alt="Vila dos Frames" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Vila dos Frames</span></span>
+    <span class="logo-slot"><img src="assets/logos/entropia-filmes.png" alt="Entropia Filmes" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Entropia Filmes</span></span>
+    <span class="logo-slot"><img src="assets/logos/raca-livre.png" alt="Raça Livre Produções" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Raça Livre Produções</span></span>
+    <span class="logo-slot"><img src="assets/logos/setcom.png" alt="SetCom Produções" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">SetCom Produções</span></span>
+    <span class="logo-slot"><img src="assets/logos/una-criatividade.png" alt="Una Criatividade" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="logo-fallback">Una Criatividade</span></span>
   </div>
 </div>
 
@@ -276,28 +318,39 @@
     </div>
     <p class="section-note">Da concepção do universo visual à execução no set.</p>
   </div>
-  <!-- Pôster: troque .poster-art por <img class="poster-art" src="assets/posters/nome.jpg" alt="..."> quando tiver a arte real -->
+  <!-- Sistema de pôsteres: coloque cada arquivo em assets/posters/ com o nome indicado no src.
+       Se o arquivo não existir, o fundo em gradiente com "GG" aparece no lugar (fallback automático). -->
   <div class="grid">
-    <a class="poster award" href="https://www.youtube.com/watch?v=zkIRJuMCcb4" target="_blank" rel="noopener">
-      <div class="poster-art"></div><div class="poster-shade"></div>
-      <div class="poster-info"><span class="yr">2019</span><h3>Crisálida — O Filme</h3><div class="studio">Arapy Produções · Longa-metragem</div><span class="tag">Netflix Brasil / TV Cultura</span><div class="go">Assistir</div></div>
-    </a>
-    <a class="poster" href="https://www.instagram.com/p/DPPHJPMAhA_/" target="_blank" rel="noopener">
-      <div class="poster-art"></div><div class="poster-shade"></div>
-      <div class="poster-info"><span class="yr">2023</span><h3>Crisálida — 2ª Temporada</h3><div class="studio">Arapy Produções · Série, 6 episódios</div><span class="tag">Netflix Brasil / TV Cultura</span><div class="go">Assistir</div></div>
-    </a>
-    <a class="poster" href="https://www.youtube.com/watch?v=C4j-FzNUo-8" target="_blank" rel="noopener">
-      <div class="poster-art"></div><div class="poster-shade"></div>
-      <div class="poster-info"><span class="yr">2017</span><h3>Crisálida — 1ª Temporada</h3><div class="studio">Arapy Produções · Série, 4 episódios</div><span class="tag">Ficção seriada</span><div class="go">Assistir</div></div>
-    </a>
-    <a class="poster award" href="https://www.youtube.com/watch?v=K9_3iMp36L0" target="_blank" rel="noopener">
-      <div class="poster-art"></div><div class="poster-shade"></div>
-      <div class="poster-info"><span class="yr">2024/25</span><h3>O Silêncio dos Lobos</h3><div class="studio">Vila dos Frames · Curta-metragem</div><span class="tag">Prêmio Catarinense &amp; LPG 2023</span><div class="go">Assistir</div></div>
-    </a>
-    <a class="poster award" href="https://youtu.be/eHtk5EDXYwA" target="_blank" rel="noopener">
-      <div class="poster-art"></div><div class="poster-shade"></div>
-      <div class="poster-info"><span class="yr">2024</span><h3>A Última Oração</h3><div class="studio">Vila dos Frames · Média-metragem</div><span class="tag">Prêmio Catarinense &amp; LPG 2023</span><div class="go">Assistir</div></div>
-    </a>
+    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-year="2019" data-studio="Arapy Produções · Longa-metragem" data-tag="Netflix Brasil / TV Cultura">
+      <div class="poster-art"></div>
+      <img class="poster-img" src="assets/posters/crisalida-filme.jpg" alt="" onerror="this.remove()">
+      <div class="poster-shade"></div>
+      <div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-url="https://www.instagram.com/p/DPPHJPMAhA_/" data-title="Crisálida — 2ª Temporada" data-year="2023" data-studio="Arapy Produções · Série, 6 episódios" data-tag="Netflix Brasil / TV Cultura">
+      <div class="poster-art"></div>
+      <img class="poster-img" src="assets/posters/crisalida-t2.jpg" alt="" onerror="this.remove()">
+      <div class="poster-shade"></div>
+      <div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-yt="C4j-FzNUo-8" data-title="Crisálida — 1ª Temporada" data-year="2017" data-studio="Arapy Produções · Série, 4 episódios" data-tag="Ficção seriada">
+      <div class="poster-art"></div>
+      <img class="poster-img" src="assets/posters/crisalida-t1.jpg" alt="" onerror="this.remove()">
+      <div class="poster-shade"></div>
+      <div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster award" data-yt="K9_3iMp36L0" data-title="O Silêncio dos Lobos" data-year="2024/25" data-studio="Vila dos Frames · Curta-metragem" data-tag="Prêmio Catarinense &amp; LPG 2023">
+      <div class="poster-art"></div>
+      <img class="poster-img" src="assets/posters/silencio-dos-lobos.jpg" alt="" onerror="this.remove()">
+      <div class="poster-shade"></div>
+      <div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster award" data-yt="eHtk5EDXYwA" data-title="A Última Oração" data-year="2024" data-studio="Vila dos Frames · Média-metragem" data-tag="Prêmio Catarinense &amp; LPG 2023">
+      <div class="poster-art"></div>
+      <img class="poster-img" src="assets/posters/a-ultima-oracao.jpg" alt="" onerror="this.remove()">
+      <div class="poster-shade"></div>
+      <div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
   </div>
 </section>
 
@@ -310,22 +363,30 @@
     <p class="section-note">Garantindo que a visão do diretor chegue inteira à tela.</p>
   </div>
   <div class="grid">
-    <a class="poster award" href="https://www.youtube.com/watch?v=zkIRJuMCcb4" target="_blank" rel="noopener">
-      <div class="poster-art"></div><div class="poster-shade"></div>
-      <div class="poster-info"><span class="yr">2019</span><h3>Crisálida — O Filme</h3><div class="studio">Arapy Produções · Longa-metragem</div><span class="tag">Netflix Brasil / TV Cultura</span><div class="go">Assistir</div></div>
-    </a>
-    <a class="poster" href="https://www.instagram.com/p/DPPHJPMAhA_/" target="_blank" rel="noopener">
-      <div class="poster-art"></div><div class="poster-shade"></div>
-      <div class="poster-info"><span class="yr">2023</span><h3>Crisálida — 2ª Temporada</h3><div class="studio">Arapy Produções · Série</div><span class="tag">Netflix Brasil / TV Cultura</span><div class="go">Assistir</div></div>
-    </a>
-    <a class="poster award" href="https://www.youtube.com/watch?v=9yzK9BXXvsA" target="_blank" rel="noopener">
-      <div class="poster-art"></div><div class="poster-shade"></div>
-      <div class="poster-info"><span class="yr">2023</span><h3>A Chuva Não Me Viu Passar</h3><div class="studio">Entropia Filmes · Curta-metragem</div><span class="tag">Edital Arnaldo Carreirão</span><div class="go">Assistir</div></div>
-    </a>
-    <a class="poster" href="https://tinyurl.com/srtx6k5n" target="_blank" rel="noopener">
-      <div class="poster-art"></div><div class="poster-shade"></div>
-      <div class="poster-info"><span class="yr">2025</span><h3>Imaginário Bar</h3><div class="studio">SetCom Produções · Curta-metragem</div><span class="tag">Ficção</span><div class="go">Assistir</div></div>
-    </a>
+    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-year="2019" data-studio="Arapy Produções · Longa-metragem" data-tag="Netflix Brasil / TV Cultura">
+      <div class="poster-art"></div>
+      <img class="poster-img" src="assets/posters/crisalida-filme.jpg" alt="" onerror="this.remove()">
+      <div class="poster-shade"></div>
+      <div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-url="https://www.instagram.com/p/DPPHJPMAhA_/" data-title="Crisálida — 2ª Temporada" data-year="2023" data-studio="Arapy Produções · Série" data-tag="Netflix Brasil / TV Cultura">
+      <div class="poster-art"></div>
+      <img class="poster-img" src="assets/posters/crisalida-t2.jpg" alt="" onerror="this.remove()">
+      <div class="poster-shade"></div>
+      <div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster award" data-yt="9yzK9BXXvsA" data-title="A Chuva Não Me Viu Passar" data-year="2023" data-studio="Entropia Filmes · Curta-metragem" data-tag="Edital Arnaldo Carreirão">
+      <div class="poster-art"></div>
+      <img class="poster-img" src="assets/posters/a-chuva-nao-me-viu-passar.jpg" alt="" onerror="this.remove()">
+      <div class="poster-shade"></div>
+      <div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-url="https://tinyurl.com/srtx6k5n" data-title="Imaginário Bar" data-year="2025" data-studio="SetCom Produções · Curta-metragem" data-tag="Ficção">
+      <div class="poster-art"></div>
+      <img class="poster-img" src="assets/posters/imaginario-bar.jpg" alt="" onerror="this.remove()">
+      <div class="poster-shade"></div>
+      <div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
   </div>
 </section>
 
@@ -338,24 +399,30 @@
     <p class="section-note">Grades que reforçam a atmosfera de cada projeto — do contraste dramático ao naturalismo sutil.</p>
   </div>
   <div class="grid">
-    <a class="poster award" href="https://www.youtube.com/watch?v=K9_3iMp36L0" target="_blank" rel="noopener">
-      <div class="poster-art"></div><div class="poster-shade"></div>
-      <div class="poster-info"><span class="yr">2024/25</span><h3>O Silêncio dos Lobos</h3><div class="studio">Vila dos Frames · Curta-metragem</div><span class="tag">Prêmio Catarinense &amp; LPG 2023</span><div class="go">Assistir</div></div>
-    </a>
-    <div class="poster">
-      <div class="poster-art"></div><div class="poster-shade"></div>
-      <div class="poster-info"><span class="yr">2025</span><h3>11 Minutos</h3><div class="studio">Leandro Forgiarini · Curta-metragem</div><span class="tag">Colorização</span><div class="go" style="opacity:0.5;">Link em breve</div></div>
-    </div>
-    <a class="poster" href="https://www.youtube.com/watch?v=q-PwfgvkM7A" target="_blank" rel="noopener">
-      <div class="poster-art"></div><div class="poster-shade"></div>
-      <div class="poster-info"><span class="yr">2022</span><h3>Entre Paredes</h3><div class="studio">Raça Livre Produções · Curta-metragem</div><span class="tag">Colorização</span><div class="go">Assistir</div></div>
-    </a>
+    <button type="button" class="poster award" data-yt="K9_3iMp36L0" data-title="O Silêncio dos Lobos" data-year="2024/25" data-studio="Vila dos Frames · Curta-metragem" data-tag="Prêmio Catarinense &amp; LPG 2023">
+      <div class="poster-art"></div>
+      <img class="poster-img" src="assets/posters/silencio-dos-lobos.jpg" alt="" onerror="this.remove()">
+      <div class="poster-shade"></div>
+      <div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-title="11 Minutos" data-year="2025" data-studio="Leandro Forgiarini · Curta-metragem" data-tag="Colorização">
+      <div class="poster-art"></div>
+      <img class="poster-img" src="assets/posters/11-minutos.jpg" alt="" onerror="this.remove()">
+      <div class="poster-shade"></div>
+      <div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-yt="q-PwfgvkM7A" data-title="Entre Paredes" data-year="2022" data-studio="Raça Livre Produções · Curta-metragem" data-tag="Colorização">
+      <div class="poster-art"></div>
+      <img class="poster-img" src="assets/posters/entre-paredes.jpg" alt="" onerror="this.remove()">
+      <div class="poster-shade"></div>
+      <div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
   </div>
 </section>
 
 <section class="cta" id="contato">
   <h2>Vamos trabalhar<br>no seu próximo projeto?</h2>
-  <p class="section-note" style="margin:0 auto; text-align:center;">Disponível para projetos freelance em Direção de Arte, 1º AD e Colorização — Brasil e remoto.</p>
+  <p class="section-note" style="margin:0 auto; text-align:center;">Disponível para projetos freelance em Direção de Arte, Assistência de Direção e Colorização — Brasil e remoto.</p>
   <div class="cta-links">
     <a href="mailto:seuemail@exemplo.com">E-mail</a>
     <a href="https://wa.me/55SEUNUMERO" target="_blank" rel="noopener">WhatsApp</a>
@@ -368,6 +435,15 @@
   <span>© Gabriel Garcia — Cinema</span>
   <span>Santa Catarina, Brasil</span>
 </footer>
+
+<div class="modal" id="filmModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel">
+    <button type="button" class="modal-close" data-close aria-label="Fechar">✕</button>
+    <div class="modal-video" id="modalVideo"></div>
+    <div class="modal-sheet" id="modalSheet"></div>
+  </div>
+</div>
 
 <script>
   const toggle = document.getElementById('navToggle');
@@ -388,6 +464,42 @@
     }
     heroVideo.addEventListener('error', () => { heroVideo.style.display = 'none'; });
   }
+
+  // ---------- Modal de pôster: player do YouTube + ficha técnica ----------
+  const modal = document.getElementById('filmModal');
+  const modalVideo = document.getElementById('modalVideo');
+  const modalSheet = document.getElementById('modalSheet');
+
+  function openModal(d){
+    if(d.yt){
+      modalVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${d.yt}?rel=0&autoplay=1" title="${d.title || ''}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+    } else if(d.url){
+      modalVideo.innerHTML = `<div class="modal-link"><span>Trailer hospedado fora do YouTube</span><a href="${d.url}" target="_blank" rel="noopener">Assistir</a></div>`;
+    } else {
+      modalVideo.innerHTML = `<div class="modal-link"><span>Trailer em breve</span></div>`;
+    }
+
+    let dl = '';
+    if(d.year)   dl += `<dt>Ano</dt><dd>${d.year}</dd>`;
+    if(d.studio) dl += `<dt>Produtora</dt><dd>${d.studio}</dd>`;
+    if(d.tag)    dl += `<dt>Categoria</dt><dd>${d.tag}</dd>`;
+    modalSheet.innerHTML = `<h3>${d.title || ''}</h3><dl>${dl}</dl>`;
+
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    modalVideo.innerHTML = ''; // remove o iframe para parar o vídeo
+  }
+
+  document.querySelectorAll('.poster').forEach(p => {
+    p.addEventListener('click', () => openModal(p.dataset));
+  });
+  modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
 </script>
 
 </body>
