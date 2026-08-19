@@ -89,8 +89,10 @@
     text-align:center;
   }
   .hero-video{
-    position:absolute; inset:0; width:100%; height:100%;
-    object-fit:cover; z-index:0;
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:100%; aspect-ratio:2.35/1;
+    object-fit:cover; object-position:center 30%;
+    z-index:0;
     filter:saturate(1.05) contrast(1.02);
   }
   .hero > *:not(.hero-video){position:relative; z-index:2;}
@@ -109,7 +111,7 @@
   .rgb-mark svg{width:100%; height:100%; display:block;}
   .hero-title-text{position:relative; z-index:1;}
   .roles{
-    margin-top:28px;
+    margin:0;
     font-family:var(--mono); font-size:clamp(0.85rem,1.6vw,1.05rem); letter-spacing:0.04em;
     color:var(--ink-muted); text-transform:uppercase;
     display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
@@ -255,6 +257,7 @@
   .reels-split{
     display:grid; grid-template-columns:1fr 1fr;
     border-bottom:1px solid var(--line);
+    margin-top:clamp(28px,5vw,64px);
   }
   .reel-half{
     position:relative; aspect-ratio:16/9; overflow:hidden;
@@ -311,7 +314,7 @@
 <div class="grain"></div>
 
 <header>
-  <a class="mark" href="#top">GABRIEL GARCIA</a>
+  <a class="mark" href="#top">Gabriel Garcia</a>
   <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">MENU</button>
   <nav id="nav">
     <a href="#sobre">Sobre</a>
@@ -325,12 +328,11 @@
   <video class="hero-video" autoplay muted loop playsinline poster="assets/reel-poster.jpg">
     <source src="assets/reel.mp4" type="video/mp4">
   </video>
-  <h1 class="hero-title"><span class="rgb-mark" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="24" cy="24" r="17" fill="#ef4136"/><circle cx="40" cy="24" r="17" fill="#3fb54a"/><circle cx="32" cy="39" r="17" fill="#2f6fed"/></svg></span><span class="hero-title-text">GABRIEL GARCIA</span></h1>
-  <div class="roles">
+  <p class="roles">
     <span>Direção de Arte</span>
     <span>Assistência de Direção</span>
     <span>Colorização</span>
-  </div>
+  </p>
 </section>
 
 <!-- Sistema de pôsteres: coloque cada arquivo em assets/posters/ com o nome indicado no src.
@@ -468,8 +470,8 @@
   <div class="about-centered">
     <p>Gabriel constrói imagens há 23 anos. Certo de que cenários, adereços, cor e luz contam uma história tão importante quanto o roteiro.</p>
     <p>Formado em Publicidade e Propaganda, com pós-graduação em Cinema, transita entre Direção de Arte, Assistência de Direção e Colorização.</p>
-    <p>A vivência na cor muda a forma como se pensa a direção de arte. Sentidos também são construídos através de cor e contraste. Entender como os elementos se comportarão na grade final garante que a atmosfera pensada no set sobreviva até a tela. Já a assistência de direção é a disciplina do processo. Capacidades de organização, articulação e resiliência que trazem ao diretor de arte e colorista, objetividade, repertório e coragem... pois sem ela não há cinema.</p>
     <p>É Diretor de Arte na série "Crisálida" (Netflix Brasil / TV Cultura) e também nos filmes "O Silêncio dos Lobos" (2025) e "A Última Oração" (2024). Atua ainda como professor universitário, afinal, ensinar é a melhor forma de revisar o próprio ofício.</p>
+    <p>A vivência na cor muda a forma como se pensa a direção de arte. Sentidos também são construídos através de cor e contraste. Entender como os elementos se comportarão na grade final garante que a atmosfera pensada no set sobreviva até a tela. Já a assistência de direção é a disciplina do processo. Capacidades de organização, articulação e resiliência que trazem ao diretor de arte e colorista, objetividade, repertório e coragem... pois sem ela não há cinema.</p>
   </div>
 </section>
 
