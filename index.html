@@ -73,7 +73,7 @@
     display:inline-flex; align-items:center; gap:10px;
     font-family:var(--display-light); font-weight:300; font-size:1.15rem; letter-spacing:0.02em;
   }
-  .mark-icon{width:2.05em; flex:0 0 auto;}
+  .mark-icon{width:2.5em; flex:0 0 auto;}
   .mark-icon svg{width:100%; height:auto; display:block;}
   nav{display:flex; gap:clamp(16px,3vw,36px); font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;}
   nav a{opacity:0.75; transition:opacity 0.25s;}
@@ -92,10 +92,8 @@
     text-align:center;
   }
   .hero-video{
-    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-    width:100%; aspect-ratio:2.35/1;
-    object-fit:cover; object-position:center 30%;
-    z-index:0;
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; z-index:0;
     filter:saturate(1.05) contrast(1.02);
   }
   .hero > *:not(.hero-video){position:relative; z-index:2;}
@@ -108,16 +106,16 @@
   h1.hero-title{
     position:relative; display:inline-block;
     font-family:var(--display-light); font-weight:300;
-    font-size:clamp(1.5rem, 6.4vw, 5.6rem); line-height:1; letter-spacing:0.01em;
+    font-size:clamp(1.3rem, 5.2vw, 4.3rem); line-height:1; letter-spacing:0.01em;
     color:var(--ink); white-space:nowrap;
-    text-shadow:0 2px 24px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.6);
+    text-shadow:0 2px 14px rgba(0,0,0,0.5);
   }
   .roles{
     margin:24px 0 0;
     font-family:var(--mono); font-size:clamp(0.85rem,1.6vw,1.05rem); letter-spacing:0.04em;
     color:var(--ink-muted); text-transform:uppercase;
     display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
-    text-shadow:0 1px 12px rgba(0,0,0,0.6);
+    text-shadow:0 2px 14px rgba(0,0,0,0.5);
   }
   .roles span:not(:last-child)::after{
     content:'•'; display:inline-block; color:var(--amber); margin:0 14px; transform:translateY(-1px);
@@ -132,7 +130,7 @@
   .films-track{
     display:flex; width:max-content; gap:22px; will-change:transform;
   }
-  .films-track .poster{width:250px; flex:0 0 auto;}
+  .films-track .poster{width:205px; flex:0 0 auto;}
   .films-track .poster-img, .films-track img{-webkit-user-drag:none; user-drag:none;}
 
   /* ---------- MARQUEE (logos de produtoras) ---------- */
@@ -307,7 +305,16 @@
     nav{position:fixed; top:0; right:0; height:100vh; width:min(78vw,320px); background:var(--bg); flex-direction:column; justify-content:center; align-items:flex-start; padding:0 40px; transform:translateX(100%); transition:transform 0.4s ease; gap:26px; mix-blend-mode:normal; border-left:1px solid var(--line);}
     nav.open{transform:translateX(0);}
     .nav-toggle{display:block; background:none; border:none; color:var(--ink); font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; z-index:60; mix-blend-mode:difference;}
-    .films-track .poster{width:180px;}
+    .films-track .poster{width:150px;}
+  }
+
+  /* Telas em retrato (tablets e celulares): o corte cinemascope (2.35:1) fica
+     estreito demais em telas altas, então usamos uma proporção mais alta aqui,
+     e reduzimos nome/ícone para não dominarem visualmente sobre o vídeo. */
+  @media (orientation:portrait){
+    .venn-mark{ width:clamp(2.6rem, 22vw, 6rem); }
+    h1.hero-title{ font-size:clamp(1.2rem, 8.5vw, 2.6rem); }
+    .hero{ padding-bottom:clamp(64px,12vh,140px); }
   }
 </style>
 </head>
@@ -318,7 +325,6 @@
 <header>
   <a class="mark" href="#top">
     <span class="mark-icon" aria-hidden="true"><svg viewBox="0 0 942 553"><path fill="currentColor" fill-rule="evenodd" d="M503,187 L504,191 L523,218 L533,237 L542,209 L555,183 L565,168 L580,150 L607,126 L631,111 L662,99 L691,93 L728,92 L752,95 L774,101 L787,106 L818,123 L832,134 L851,153 L864,171 L878,198 L924,198 L913,174 L891,140 L865,111 L843,93 L818,78 L788,65 L754,56 L723,53 L690,54 L659,59 L623,71 L592,87 L568,104 L543,128 L523,153 Z M6,239 L4,279 L10,322 L29,371 L54,407 L85,437 L120,460 L162,477 L207,485 L281,480 L344,454 L400,403 L433,342 L403,287 L220,287 L220,331 L386,334 L364,373 L336,403 L312,420 L266,438 L205,442 L176,437 L136,421 L105,399 L75,363 L57,323 L50,283 L54,228 L65,194 L92,151 L129,119 L173,99 L211,92 L257,94 L295,105 L332,127 L370,168 L488,362 L531,420 L591,466 L653,488 L702,493 L756,489 L805,475 L851,450 L883,422 L912,382 L930,341 L940,286 L698,284 L697,328 L887,329 L855,385 L800,429 L767,442 L725,449 L647,442 L600,421 L556,382 L408,147 L372,107 L312,69 L238,53 L158,63 L117,80 L85,101 L53,133 L32,164 Z"/></svg></span>
-    <span class="mark-text">Gabriel Garcia</span>
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">MENU</button>
   <nav id="nav">
@@ -622,9 +628,8 @@
       startX = e.clientX;
       startOffset = offset;
       filmsWrap.classList.add('dragging');
-      try{ filmsWrap.setPointerCapture(e.pointerId); }catch(err){}
     });
-    filmsWrap.addEventListener('pointermove', e => {
+    window.addEventListener('pointermove', e => {
       if(!isDown) return;
       const dx = e.clientX - startX;
       if(Math.abs(dx) > 5) dragged = true;
@@ -638,9 +643,8 @@
       normalize();
       applyTransform();
     }
-    filmsWrap.addEventListener('pointerup', endDrag);
-    filmsWrap.addEventListener('pointerleave', endDrag);
-    filmsWrap.addEventListener('pointercancel', endDrag);
+    window.addEventListener('pointerup', endDrag);
+    window.addEventListener('pointercancel', endDrag);
 
     // Impede que o clique abra o modal quando o gesto foi um arraste, não um toque/clique simples
     filmsWrap.addEventListener('click', e => {
