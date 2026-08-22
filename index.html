@@ -257,15 +257,15 @@
   .mo-row{
     display:grid; grid-template-columns:1fr 1fr;
     border-bottom:1px solid var(--line);
-    min-height:min(72vh, 640px);
   }
   .mo-row:first-of-type{margin-top:clamp(28px,5vw,64px);}
   .mo-video{
     position:relative; overflow:hidden; background:var(--bg-soft); order:1;
+    aspect-ratio:16/9; align-self:center;
   }
   .mo-row.reverse .mo-video{order:2;}
   .mo-video video{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background:#000;
+    position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:#000;
   }
   .mo-fallback{
     display:none; position:absolute; inset:0; z-index:1;
@@ -287,8 +287,8 @@
   .mo-text-inner p{color:var(--ink-muted); font-size:1rem; line-height:1.75; margin-bottom:1.1em;}
   .mo-text-inner p:last-child{margin-bottom:0;}
   @media (max-width:760px){
-    .mo-row, .mo-row.reverse{grid-template-columns:1fr; min-height:0;}
-    .mo-video, .mo-row.reverse .mo-video{order:1; aspect-ratio:4/5;}
+    .mo-row, .mo-row.reverse{grid-template-columns:1fr;}
+    .mo-video, .mo-row.reverse .mo-video{order:1; aspect-ratio:16/9;}
     .mo-text, .mo-row.reverse .mo-text{order:2; padding:32px 6vw;}
   }
 
@@ -479,8 +479,8 @@
     </div>
     <div class="mo-text">
       <div class="mo-text-inner">
-        <span class="eyebrow">Making of</span>
-        <h3>Direção de Arte &amp; Assistência de Direção</h3>
+        <span class="eyebrow">Direção de Arte | AD</span>
+        <h3>[Frase de impacto a definir]</h3>
         <p>[Texto a definir — substitua este parágrafo pelo texto final sobre o making of de Direção de Arte e Assistência de Direção.]</p>
         <p>[Segundo parágrafo aqui.]</p>
       </div>
@@ -495,8 +495,8 @@
     </div>
     <div class="mo-text">
       <div class="mo-text-inner">
-        <span class="eyebrow">Making of</span>
-        <h3>Colorização</h3>
+        <span class="eyebrow">Colorização</span>
+        <h3>[Frase de impacto a definir]</h3>
         <p>[Texto a definir — substitua este parágrafo pelo texto final sobre o making of de Colorização.]</p>
         <p>[Segundo parágrafo aqui.]</p>
       </div>
