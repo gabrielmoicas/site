@@ -257,15 +257,20 @@
   .mo-row{
     display:grid; grid-template-columns:1fr 1fr;
     border-bottom:1px solid var(--line);
+    align-items:center;
   }
   .mo-row:first-of-type{margin-top:clamp(28px,5vw,64px);}
   .mo-video{
-    position:relative; overflow:hidden; background:var(--bg-soft); order:1;
-    aspect-ratio:16/9; align-self:center;
+    display:flex; align-items:center; justify-content:flex-end; order:1;
+    padding:clamp(20px,3vw,36px) 0;
   }
-  .mo-row.reverse .mo-video{order:2;}
-  .mo-video video{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:#000;
+  .mo-row.reverse .mo-video{order:2; justify-content:flex-start;}
+  .mo-video-inner{
+    position:relative; overflow:hidden; background:var(--bg-soft);
+    width:min(420px, 82%); aspect-ratio:16/9;
+  }
+  .mo-video-inner video{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background:#000;
   }
   .mo-fallback{
     display:none; position:absolute; inset:0; z-index:1;
@@ -288,8 +293,9 @@
   .mo-text-inner p:last-child{margin-bottom:0;}
   @media (max-width:760px){
     .mo-row, .mo-row.reverse{grid-template-columns:1fr;}
-    .mo-video, .mo-row.reverse .mo-video{order:1; aspect-ratio:16/9;}
-    .mo-text, .mo-row.reverse .mo-text{order:2; padding:32px 6vw;}
+    .mo-video, .mo-row.reverse .mo-video{order:1; justify-content:center; padding:24px 6vw 0;}
+    .mo-video-inner{width:100%; max-width:420px;}
+    .mo-text, .mo-row.reverse .mo-text{order:2; padding:24px 6vw 32px;}
   }
 
   /* ---------- CTA / CONTATO ---------- */
@@ -472,33 +478,36 @@
 <div id="makingof">
   <div class="mo-row">
     <div class="mo-video">
-      <video autoplay muted loop playsinline poster="assets/videos/makingof-arte-ad-poster.jpg">
-        <source src="assets/videos/makingof-arte-ad.mp4" type="video/mp4">
-      </video>
-      <div class="mo-fallback">Vídeo em breve</div>
+      <div class="mo-video-inner">
+        <video autoplay muted loop playsinline poster="assets/videos/makingof-arte-ad-poster.jpg">
+          <source src="assets/videos/makingof-arte-ad.mp4" type="video/mp4">
+        </video>
+        <div class="mo-fallback">Vídeo em breve</div>
+      </div>
     </div>
     <div class="mo-text">
       <div class="mo-text-inner">
         <span class="eyebrow">Direção de Arte | AD</span>
-        <h3>[Frase de impacto a definir]</h3>
-        <p>[Texto a definir — substitua este parágrafo pelo texto final sobre o making of de Direção de Arte e Assistência de Direção.]</p>
-        <p>[Segundo parágrafo aqui.]</p>
+        <h3>Atribuir sentido</h3>
+        <p>Sentido se constrói em camadas. Cada objeto, figurino, cor ou luz carrega uma função tão importante quanto a fala no desenvolvimento da narrativa. A vivência na colorização muda o pensar na direção de arte: entender como cor e contraste irão se comportar na grade final garante que a atmosfera pensada no set sobreviva até a tela.</p>
+        <p>Trabalhar em equipe. Conhecer a rotina de cada departamento. Arquitetar cronogramas de gravação e mediar entre o pensamento poético do roteiro e o pragmatismo da diária. É preciso enxergar o filme inteiro a partir da página escrita — com disciplina, repertório, conhecimento técnico e resiliência.</p>
       </div>
     </div>
   </div>
   <div class="mo-row reverse">
     <div class="mo-video">
-      <video autoplay muted loop playsinline poster="assets/videos/makingof-colorizacao-poster.jpg">
-        <source src="assets/videos/makingof-colorizacao.mp4" type="video/mp4">
-      </video>
-      <div class="mo-fallback">Vídeo em breve</div>
+      <div class="mo-video-inner">
+        <video autoplay muted loop playsinline poster="assets/videos/makingof-colorizacao-poster.jpg">
+          <source src="assets/videos/makingof-colorizacao.mp4" type="video/mp4">
+        </video>
+        <div class="mo-fallback">Vídeo em breve</div>
+      </div>
     </div>
     <div class="mo-text">
       <div class="mo-text-inner">
         <span class="eyebrow">Colorização</span>
-        <h3>[Frase de impacto a definir]</h3>
-        <p>[Texto a definir — substitua este parágrafo pelo texto final sobre o making of de Colorização.]</p>
-        <p>[Segundo parágrafo aqui.]</p>
+        <h3>Cor a seu favor</h3>
+        <p>Faltava colorização de verdade em Santa Catarina. Percebi a lacuna, fiz as malas e fui buscar em São Paulo o conhecimento sob medida pra quem já vinha da Direção de Arte e queria ir fundo em cor. Hoje o foco é técnico: RAW, médio formato, workflows ARRI, RED e Blackmagic — cada sensor tem sua própria assinatura de cor, suas nuances. Meu objetivo, mais uma vez, é ajudar diretores na criação e manutenção dos sentidos pensados para o filme.</p>
       </div>
     </div>
   </div>
@@ -513,7 +522,6 @@
     <p>Gabriel constrói imagens há 23 anos. Certo de que cenários, adereços, cor e luz contam uma história tão importante quanto o roteiro.</p>
     <p>Formado em Publicidade e Propaganda, com pós-graduação em Cinema, transita entre Direção de Arte, Assistência de Direção e Colorização.</p>
     <p>É Diretor de Arte na série "Crisálida" (Netflix Brasil / TV Cultura) e também nos filmes "O Silêncio dos Lobos" (2025) e "A Última Oração" (2024). Atua ainda como professor universitário, afinal, ensinar é a melhor forma de revisar o próprio ofício.</p>
-    <p>A vivência na cor muda a forma como se pensa a direção de arte. Sentidos também são construídos através de cor e contraste. Entender como os elementos se comportarão na grade final garante que a atmosfera pensada no set sobreviva até a tela. Já a assistência de direção é a disciplina do processo. Capacidades de organização, articulação e resiliência que trazem ao diretor de arte e colorista, objetividade, repertório e coragem... pois sem ela não há cinema.</p>
   </div>
 </section>
 
