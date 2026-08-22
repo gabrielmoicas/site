@@ -253,36 +253,43 @@
   .modal-sheet dt{font-family:var(--mono); font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); padding-top:2px;}
   .modal-sheet dd{color:var(--ink-muted); font-size:0.92rem;}
 
-  /* ---------- MAKING OF (dois players lado a lado) ---------- */
-  .reels-split{
+  /* ---------- MAKING OF (vídeo em loop + texto, linhas alternadas) ---------- */
+  .mo-row{
     display:grid; grid-template-columns:1fr 1fr;
     border-bottom:1px solid var(--line);
-    margin-top:clamp(28px,5vw,64px);
+    min-height:min(72vh, 640px);
   }
-  .reel-half{
-    position:relative; aspect-ratio:16/9; overflow:hidden;
-    border-right:1px solid var(--line); background:var(--bg-soft);
+  .mo-row:first-of-type{margin-top:clamp(28px,5vw,64px);}
+  .mo-video{
+    position:relative; overflow:hidden; background:var(--bg-soft); order:1;
   }
-  .reel-half:last-child{border-right:none;}
-  .reel-half video{
+  .mo-row.reverse .mo-video{order:2;}
+  .mo-video video{
     position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background:#000;
   }
-  .reel-fallback{
+  .mo-fallback{
     display:none; position:absolute; inset:0; z-index:1;
     align-items:center; justify-content:center; text-align:center; padding:24px;
     background:linear-gradient(155deg, var(--teal) 0%, var(--bg-soft) 62%);
     font-family:var(--mono); font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-muted);
   }
-  .reel-caption{
-    position:absolute; left:0; right:0; bottom:0; z-index:2; padding:20px 26px;
-    background:linear-gradient(180deg, transparent, rgba(11,15,13,0.9));
-    font-family:var(--mono); font-size:0.75rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink);
-    pointer-events:none;
+  .mo-text{
+    display:flex; align-items:center; order:2;
+    padding:clamp(32px,6vw,88px);
   }
+  .mo-row.reverse .mo-text{order:1;}
+  .mo-text-inner{max-width:480px;}
+  .mo-text-inner .eyebrow{margin-bottom:16px;}
+  .mo-text-inner h3{
+    font-family:var(--display); font-weight:500; font-size:clamp(1.6rem,3vw,2.3rem);
+    margin-bottom:20px; line-height:1.2;
+  }
+  .mo-text-inner p{color:var(--ink-muted); font-size:1rem; line-height:1.75; margin-bottom:1.1em;}
+  .mo-text-inner p:last-child{margin-bottom:0;}
   @media (max-width:760px){
-    .reels-split{grid-template-columns:1fr;}
-    .reel-half{border-right:none; border-bottom:1px solid var(--line); aspect-ratio:16/9;}
-    .reel-half:last-child{border-bottom:none;}
+    .mo-row, .mo-row.reverse{grid-template-columns:1fr; min-height:0;}
+    .mo-video, .mo-row.reverse .mo-video{order:1; aspect-ratio:4/5;}
+    .mo-text, .mo-row.reverse .mo-text{order:2; padding:32px 6vw;}
   }
 
   /* ---------- CTA / CONTATO ---------- */
@@ -459,21 +466,41 @@
 </div>
 
 <!-- Making of: coloque os arquivos em assets/videos/ com os nomes indicados no src.
-     Se o vídeo não existir ou não carregar, aparece um fundo em gradiente com aviso "Vídeo em breve". -->
-<div class="reels-split" id="makingof">
-  <div class="reel-half">
-    <video class="makingof-video" controls playsinline poster="assets/videos/makingof-arte-ad-poster.jpg">
-      <source src="assets/videos/makingof-arte-ad.mp4" type="video/mp4">
-    </video>
-    <div class="reel-fallback">Vídeo em breve</div>
-    <div class="reel-caption">Making of — Direção de Arte &amp; Assistência de Direção</div>
+     Vídeos rodam em loop, mudos, sem controles — igual ao reel do hero.
+     Se o vídeo não existir ou não carregar, aparece um fundo em gradiente no lugar.
+     Troque o texto placeholder de cada .mo-text-inner pelo texto final. -->
+<div id="makingof">
+  <div class="mo-row">
+    <div class="mo-video">
+      <video autoplay muted loop playsinline poster="assets/videos/makingof-arte-ad-poster.jpg">
+        <source src="assets/videos/makingof-arte-ad.mp4" type="video/mp4">
+      </video>
+      <div class="mo-fallback">Vídeo em breve</div>
+    </div>
+    <div class="mo-text">
+      <div class="mo-text-inner">
+        <span class="eyebrow">Making of</span>
+        <h3>Direção de Arte &amp; Assistência de Direção</h3>
+        <p>[Texto a definir — substitua este parágrafo pelo texto final sobre o making of de Direção de Arte e Assistência de Direção.]</p>
+        <p>[Segundo parágrafo aqui.]</p>
+      </div>
+    </div>
   </div>
-  <div class="reel-half">
-    <video class="makingof-video" controls playsinline poster="assets/videos/makingof-colorizacao-poster.jpg">
-      <source src="assets/videos/makingof-colorizacao.mp4" type="video/mp4">
-    </video>
-    <div class="reel-fallback">Vídeo em breve</div>
-    <div class="reel-caption">Making of — Colorização</div>
+  <div class="mo-row reverse">
+    <div class="mo-video">
+      <video autoplay muted loop playsinline poster="assets/videos/makingof-colorizacao-poster.jpg">
+        <source src="assets/videos/makingof-colorizacao.mp4" type="video/mp4">
+      </video>
+      <div class="mo-fallback">Vídeo em breve</div>
+    </div>
+    <div class="mo-text">
+      <div class="mo-text-inner">
+        <span class="eyebrow">Making of</span>
+        <h3>Colorização</h3>
+        <p>[Texto a definir — substitua este parágrafo pelo texto final sobre o making of de Colorização.]</p>
+        <p>[Segundo parágrafo aqui.]</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -535,11 +562,14 @@
     heroVideo.addEventListener('error', () => { heroVideo.style.display = 'none'; });
   }
 
-  // Vídeos de making-of: mostra fallback em gradiente se o arquivo ainda não existir.
-  document.querySelectorAll('.makingof-video').forEach(v => {
+  // Vídeos de making-of: mostra fallback em gradiente se o arquivo ainda não existir,
+  // e respeita prefers-reduced-motion, igual ao reel do hero.
+  const reduceMotionMO = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.mo-video video').forEach(v => {
+    if(reduceMotionMO) v.pause();
     v.addEventListener('error', () => {
       v.style.display = 'none';
-      const fb = v.parentElement.querySelector('.reel-fallback');
+      const fb = v.parentElement.querySelector('.mo-fallback');
       if(fb) fb.style.display = 'flex';
     });
   });
