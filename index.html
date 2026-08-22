@@ -257,19 +257,14 @@
   .mo-row{
     display:grid; grid-template-columns:1fr 1fr;
     border-bottom:1px solid var(--line);
-    align-items:center;
+    min-height:min(72vh, 640px);
   }
   .mo-row:first-of-type{margin-top:clamp(28px,5vw,64px);}
   .mo-video{
-    display:flex; align-items:center; justify-content:flex-end; order:1;
-    padding:clamp(20px,3vw,36px) 0;
+    position:relative; overflow:hidden; background:var(--bg-soft); order:1;
   }
-  .mo-row.reverse .mo-video{order:2; justify-content:flex-start;}
-  .mo-video-inner{
-    position:relative; overflow:hidden; background:var(--bg-soft);
-    width:min(420px, 82%); aspect-ratio:16/9;
-  }
-  .mo-video-inner video{
+  .mo-row.reverse .mo-video{order:2;}
+  .mo-video video{
     position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background:#000;
   }
   .mo-fallback{
@@ -292,10 +287,9 @@
   .mo-text-inner p{color:var(--ink-muted); font-size:1rem; line-height:1.75; margin-bottom:1.1em;}
   .mo-text-inner p:last-child{margin-bottom:0;}
   @media (max-width:760px){
-    .mo-row, .mo-row.reverse{grid-template-columns:1fr;}
-    .mo-video, .mo-row.reverse .mo-video{order:1; justify-content:center; padding:24px 6vw 0;}
-    .mo-video-inner{width:100%; max-width:420px;}
-    .mo-text, .mo-row.reverse .mo-text{order:2; padding:24px 6vw 32px;}
+    .mo-row, .mo-row.reverse{grid-template-columns:1fr; min-height:0;}
+    .mo-video, .mo-row.reverse .mo-video{order:1; aspect-ratio:4/5;}
+    .mo-text, .mo-row.reverse .mo-text{order:2; padding:32px 6vw;}
   }
 
   /* ---------- CTA / CONTATO ---------- */
@@ -341,9 +335,8 @@
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">MENU</button>
   <nav id="nav">
-    <a href="#sobre">Sobre</a>
     <a href="#trabalhos">Trabalhos</a>
-    <a href="#makingof">Making Of</a>
+    <a href="#sobre">Sobre</a>
     <a href="#contato">Contato</a>
   </nav>
 </header>
@@ -478,35 +471,31 @@
 <div id="makingof">
   <div class="mo-row">
     <div class="mo-video">
-      <div class="mo-video-inner">
-        <video autoplay muted loop playsinline poster="assets/videos/makingof-arte-ad-poster.jpg">
-          <source src="assets/videos/makingof-arte-ad.mp4" type="video/mp4">
-        </video>
-        <div class="mo-fallback">Vídeo em breve</div>
-      </div>
+      <video autoplay muted loop playsinline poster="assets/videos/makingof-arte-ad-poster.jpg">
+        <source src="assets/videos/makingof-arte-ad.mp4" type="video/mp4">
+      </video>
+      <div class="mo-fallback">Vídeo em breve</div>
     </div>
     <div class="mo-text">
       <div class="mo-text-inner">
-        <span class="eyebrow">Direção de Arte | AD</span>
-        <h3>Atribuir sentido</h3>
+        <span class="eyebrow">Direção de Arte | Assistência de Direção</span>
+        <h3>Atribuir sentido.</h3>
         <p>Sentido se constrói em camadas. Cada objeto, figurino, cor ou luz carrega uma função tão importante quanto a fala no desenvolvimento da narrativa. A vivência na colorização muda o pensar na direção de arte: entender como cor e contraste irão se comportar na grade final garante que a atmosfera pensada no set sobreviva até a tela.</p>
-        <p>Trabalhar em equipe. Conhecer a rotina de cada departamento. Arquitetar cronogramas de gravação e mediar entre o pensamento poético do roteiro e o pragmatismo da diária. É preciso enxergar o filme inteiro a partir da página escrita — com disciplina, repertório, conhecimento técnico e resiliência.</p>
+        <p>Assistência de Direção é sobre trabalho e visão. Conhecer a rotina de cada departamento. Arquitetar cronogramas e mediar o pensamento do diretor com o pragmatismo da diária. É preciso enxergar o filme inteiro a partir da página escrita — com disciplina, repertório, conhecimento técnico e resiliência.</p>
       </div>
     </div>
   </div>
   <div class="mo-row reverse">
     <div class="mo-video">
-      <div class="mo-video-inner">
-        <video autoplay muted loop playsinline poster="assets/videos/makingof-colorizacao-poster.jpg">
-          <source src="assets/videos/makingof-colorizacao.mp4" type="video/mp4">
-        </video>
-        <div class="mo-fallback">Vídeo em breve</div>
-      </div>
+      <video autoplay muted loop playsinline poster="assets/videos/makingof-colorizacao-poster.jpg">
+        <source src="assets/videos/makingof-colorizacao.mp4" type="video/mp4">
+      </video>
+      <div class="mo-fallback">Vídeo em breve</div>
     </div>
     <div class="mo-text">
       <div class="mo-text-inner">
         <span class="eyebrow">Colorização</span>
-        <h3>Cor a seu favor</h3>
+        <h3>Cor a seu favor.</h3>
         <p>Faltava colorização de verdade em Santa Catarina. Percebi a lacuna, fiz as malas e fui buscar em São Paulo o conhecimento sob medida pra quem já vinha da Direção de Arte e queria ir fundo em cor. Hoje o foco é técnico: RAW, médio formato, workflows ARRI, RED e Blackmagic — cada sensor tem sua própria assinatura de cor, suas nuances. Meu objetivo, mais uma vez, é ajudar diretores na criação e manutenção dos sentidos pensados para o filme.</p>
       </div>
     </div>
@@ -516,18 +505,15 @@
 <section id="sobre">
   <div class="section-head-center">
     <span class="eyebrow">Sobre</span>
-    <h2>Atribuir sentido.</h2>
   </div>
   <div class="about-centered">
-    <p>Gabriel constrói imagens há 23 anos. Certo de que cenários, adereços, cor e luz contam uma história tão importante quanto o roteiro.</p>
-    <p>Formado em Publicidade e Propaganda, com pós-graduação em Cinema, transita entre Direção de Arte, Assistência de Direção e Colorização.</p>
+    <p>Gabriel constrói imagens há 23 anos. Formado em Publicidade e Propaganda, com pós-graduação em Cinema, transita entre Direção de Arte, Assistência de Direção e Colorização.</p>
     <p>É Diretor de Arte na série "Crisálida" (Netflix Brasil / TV Cultura) e também nos filmes "O Silêncio dos Lobos" (2025) e "A Última Oração" (2024). Atua ainda como professor universitário, afinal, ensinar é a melhor forma de revisar o próprio ofício.</p>
   </div>
 </section>
 
 <section class="cta" id="contato">
-  <h2>Vamos trabalhar<br>no seu próximo projeto?</h2>
-  <p class="section-note" style="margin:0 auto; text-align:left;">Disponível para projetos freelance. Brasil e remoto.</p>
+  <h2>Vamos trabalhar<br>seu próximo projeto?</h2>
   <div class="cta-links">
     <a href="mailto:seuemail@exemplo.com">E-mail</a>
     <a href="https://wa.me/55SEUNUMERO" target="_blank" rel="noopener">WhatsApp</a>
