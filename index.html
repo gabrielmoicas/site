@@ -138,7 +138,6 @@
     border-bottom:1px solid var(--line); background:var(--bg-soft); overflow:hidden; padding:26px 0;
   }
   .marquee{display:flex; width:max-content; gap:72px; animation:scroll 52s linear infinite reverse; align-items:center;}
-  .marquee:hover{animation-play-state:paused;}
   .logo-slot{
     height:28px; padding:0 4px;
     display:flex; align-items:center; justify-content:center;
@@ -162,27 +161,12 @@
     margin-bottom:clamp(36px,5vw,64px);
     border-bottom:1px solid var(--line); padding-bottom:24px;
   }
-  .section-head-center{
-    text-align:center; display:flex; flex-direction:column; align-items:center;
-    margin-bottom:clamp(28px,4vw,48px);
-  }
   .eyebrow{
     font-family:var(--mono); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--amber);
     display:block; margin-bottom:14px;
   }
   h2{font-family:var(--display); font-weight:500; font-size:clamp(2rem,4.5vw,3.2rem); letter-spacing:-0.01em;}
   .section-note{font-family:var(--body); color:var(--ink-muted); max-width:34ch; font-size:0.95rem;}
-
-  /* ---------- SOBRE (bloco centralizado na página, texto alinhado à esquerda) ---------- */
-  .about-centered{max-width:640px; margin:0 auto; text-align:left;}
-  .about-centered p{color:var(--ink-muted); font-size:1.02rem; margin-bottom:1.2em;}
-  .about-centered p:first-child{color:var(--ink); font-size:1.2rem; font-family:var(--display); line-height:1.4;}
-  .credentials-row{
-    margin-top:30px; padding-top:26px; border-top:1px solid var(--line);
-    display:flex; flex-direction:column; gap:18px; align-items:flex-start; text-align:left;
-  }
-  .credentials-row span{padding:0; font-family:var(--mono); font-size:0.82rem; color:var(--ink-muted); letter-spacing:0.02em;}
-  .credentials-row b{color:var(--amber); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; font-size:0.68rem; display:block; margin-bottom:4px;}
 
   /* ---------- PROJECT POSTERS ---------- */
   .poster{
@@ -264,7 +248,7 @@
     position:relative; overflow:hidden; background:var(--bg-soft); order:1;
   }
   .mo-row.reverse .mo-video{order:2;}
-  .mo-video video{
+  .mo-video video, .mo-video img{
     position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background:#000;
   }
   .mo-fallback{
@@ -336,7 +320,6 @@
   <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">MENU</button>
   <nav id="nav">
     <a href="#trabalhos">Trabalhos</a>
-    <a href="#sobre">Sobre</a>
     <a href="#contato">Contato</a>
   </nav>
 </header>
@@ -500,17 +483,20 @@
       </div>
     </div>
   </div>
+  <div class="mo-row" id="sobre">
+    <div class="mo-video">
+      <img src="assets/brand/gabriel-foto.jpg" alt="Gabriel Garcia" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="mo-fallback">Foto em breve</div>
+    </div>
+    <div class="mo-text">
+      <div class="mo-text-inner">
+        <span class="eyebrow">Sobre</span>
+        <p>Gabriel constrói imagens há 23 anos. Formado em Publicidade e Propaganda, com pós-graduação em Cinema, transita entre Direção de Arte, Assistência de Direção e Colorização.</p>
+        <p>É Diretor de Arte na série "Crisálida" (Netflix Brasil / TV Cultura) e também nos filmes "O Silêncio dos Lobos" (2025) e "A Última Oração" (2024). Atua ainda como professor universitário, afinal, ensinar é a melhor forma de revisar o próprio ofício.</p>
+      </div>
+    </div>
+  </div>
 </div>
-
-<section id="sobre">
-  <div class="section-head-center">
-    <span class="eyebrow">Sobre</span>
-  </div>
-  <div class="about-centered">
-    <p>Gabriel constrói imagens há 23 anos. Formado em Publicidade e Propaganda, com pós-graduação em Cinema, transita entre Direção de Arte, Assistência de Direção e Colorização.</p>
-    <p>É Diretor de Arte na série "Crisálida" (Netflix Brasil / TV Cultura) e também nos filmes "O Silêncio dos Lobos" (2025) e "A Última Oração" (2024). Atua ainda como professor universitário, afinal, ensinar é a melhor forma de revisar o próprio ofício.</p>
-  </div>
-</section>
 
 <section class="cta" id="contato">
   <h2>Vamos conversar<br>sobre seu próximo projeto?</h2>
