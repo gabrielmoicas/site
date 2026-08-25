@@ -231,11 +231,12 @@
     color:var(--ink-muted); font-family:var(--mono); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; text-align:center; padding:20px;
   }
   .modal-video .modal-link a{border:1px solid var(--amber); color:var(--amber); padding:10px 22px;}
-  .modal-sheet{padding:28px 32px 34px;}
+  .modal-sheet{padding:28px 32px 34px; max-height:60vh; overflow-y:auto;}
   .modal-sheet h3{font-family:var(--display); font-weight:500; font-size:1.6rem; margin-bottom:18px; line-height:1.2;}
   .modal-sheet dl{display:grid; grid-template-columns:auto 1fr; gap:10px 22px; align-items:start;}
   .modal-sheet dt{font-family:var(--mono); font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); padding-top:2px;}
   .modal-sheet dd{color:var(--ink-muted); font-size:0.92rem;}
+  .modal-sheet .credit-divider{grid-column:1/-1; height:1px; background:var(--line); margin:8px 0 2px;}
 
   /* ---------- MAKING OF (vídeo em loop + texto, linhas alternadas) ---------- */
   .mo-row{
@@ -344,72 +345,78 @@
      Clique em qualquer pôster abre o player + ficha técnica. Todos os trabalhos ficam juntos, nesta faixa única. -->
 <div class="films-wrap" id="trabalhos">
   <div class="films-track" id="filmsTrack">
-    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-year="2019" data-studio="Arapy Produções · Longa-metragem · Direção de Arte, Assistência de Direção" data-tag="Netflix Brasil / TV Cultura">
+    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-credits='[[&quot;Ano&quot;, &quot;2019&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-filme.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-url="https://www.instagram.com/p/DPPHJPMAhA_/" data-title="Crisálida — 2ª Temporada" data-year="2023" data-studio="Arapy Produções · Série, 6 episódios · Direção de Arte, Assistência de Direção" data-tag="Netflix Brasil / TV Cultura">
+    <button type="button" class="poster" data-url="https://www.instagram.com/p/DPPHJPMAhA_/" data-title="Crisálida — 2ª Temporada" data-credits='[[&quot;Ano&quot;, &quot;2023&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t2.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="C4j-FzNUo-8" data-title="Crisálida — 1ª Temporada" data-year="2017" data-studio="Arapy Produções · Série, 4 episódios · Direção de Arte" data-tag="Ficção seriada">
+    <button type="button" class="poster" data-yt="C4j-FzNUo-8" data-title="Crisálida — 1ª Temporada" data-credits='[[&quot;Ano&quot;, &quot;2017&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t1.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster award" data-yt="K9_3iMp36L0" data-title="O Silêncio dos Lobos" data-year="2024/25" data-studio="Vila dos Frames · Curta-metragem · Direção de Arte, Colorização" data-tag="Prêmio Catarinense &amp; LPG 2023">
+    <button type="button" class="poster award" data-yt="K9_3iMp36L0" data-title="O Silêncio dos Lobos" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Produção&quot;, &quot;Vila Cinema&quot;], [&quot;Roteiro e Direção&quot;, &quot;Rodrigo Araujo e Thiago L. Soares&quot;], [&quot;Direção de Fotografia&quot;, &quot;Marx Vamerlatti&quot;], [&quot;Direção de Produção&quot;, &quot;Michelly Hadassa&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/silencio-dos-lobos.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster award" data-yt="eHtk5EDXYwA" data-title="A Última Oração" data-year="2024" data-studio="Vila dos Frames · Média-metragem · Direção de Arte" data-tag="Prêmio Catarinense &amp; LPG 2023">
+    <button type="button" class="poster award" data-yt="eHtk5EDXYwA" data-title="A Última Oração" data-credits='[[&quot;Ano&quot;, &quot;2024&quot;], [&quot;Produção&quot;, &quot;Vila Cinema&quot;], [&quot;Roteiro e Direção&quot;, &quot;Rodrigo Araujo e Thiago L. Soares&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pedro Oliveira&quot;], [&quot;Direção de Produção&quot;, &quot;Luciano Oschelski&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-ultima-oracao.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster award" data-yt="9yzK9BXXvsA" data-title="A Chuva Não Me Viu Passar" data-year="2023" data-studio="Entropia Filmes · Curta-metragem · Assistência de Direção" data-tag="Edital Arnaldo Carreirão">
+    <button type="button" class="poster award" data-yt="9yzK9BXXvsA" data-title="A Chuva Não Me Viu Passar" data-credits='[[&quot;Ano&quot;, &quot;2023&quot;], [&quot;Produção&quot;, &quot;Entropia Filmes&quot;], [&quot;Roteiro e Direção&quot;, &quot;Leonardo Gatti&quot;], [&quot;Direção de Fotografia&quot;, &quot;Eduardo Guerreiro&quot;], [&quot;Direção de Produção&quot;, &quot;Ana Paula Mendes e Tatiana Tanaka&quot;], [&quot;Direção de Arte&quot;, &quot;Cleo Rosa&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-chuva-nao-me-viu-passar.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-url="https://tinyurl.com/srtx6k5n" data-title="Imaginário Bar" data-year="2025" data-studio="SetCom Produções · Curta-metragem · Assistência de Direção" data-tag="Ficção">
+    <button type="button" class="poster" data-url="https://tinyurl.com/srtx6k5n" data-title="Imaginário Bar" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Produção&quot;, &quot;SetCom&quot;], [&quot;Produção Executiva&quot;, &quot;Ana Paula Mendes&quot;], [&quot;Direção&quot;, &quot;Bhig Villas Boas&quot;], [&quot;Direção de Fotografia&quot;, &quot;José Roberto Eliezer, ABC.&quot;], [&quot;Direção de Produção&quot;, &quot;Tatiana Tanaka&quot;], [&quot;Direção de Arte&quot;, &quot;Dicezar Leandro e Josiane Silva&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/imaginario-bar.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-title="11 Minutos" data-year="2025" data-studio="Leandro Forgiarini · Curta-metragem · Colorização" data-tag="Colorização">
+    <button type="button" class="poster" data-title="11 Minutos" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Roteiro e Direção&quot;, &quot;Leandro Forgiarini&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/11-minutos.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="q-PwfgvkM7A" data-title="Entre Paredes" data-year="2022" data-studio="Raça Livre Produções · Curta-metragem · Colorização" data-tag="Colorização">
+    <button type="button" class="poster" data-yt="q-PwfgvkM7A" data-title="Entre Paredes" data-credits='[[&quot;Ano&quot;, &quot;2022&quot;], [&quot;Produção&quot;, &quot;Raça Livre&quot;], [&quot;Roteiro e Direção&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/entre-paredes.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-title="Nova Honda Sahara" data-studio="Boiler Filmes e Yatta" data-tag="3º Assistente de Direção">
+    <button type="button" class="poster" data-title="Minha Época" data-credits='[[&quot;Agência&quot;, &quot;Publicis Brasil&quot;], [&quot;Direção Executiva de Criação&quot;, &quot;Fabio Astolpho (ECD)&quot;], [&quot;__divider__&quot;, &quot;&quot;], [&quot;Produção&quot;, &quot;Boiler Filmes&quot;], [&quot;Produção Executiva&quot;, &quot;Juliana Martellotta&quot;], [&quot;Direção de Cena&quot;, &quot;Dulcídio Caldeira e Plástico&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pablo Lozano&quot;], [&quot;Direção de Produção&quot;, &quot;Yatta Production Service&quot;], [&quot;3º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/nova-honda-sahara.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-title="Crisálida — Curta-metragem" data-studio="Curta-metragem" data-tag="1º Assistente de Direção">
+    <button type="button" class="poster" data-title="Crisálida — Curta-metragem" data-credits='[[&quot;Produção&quot;, &quot;Raça Livre, 30 Por Segundo&quot;], [&quot;Roteiro e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-curta-metragem.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-yt="mNn1MPQQDMo" data-title="Série Ailos" data-credits='[[&quot;Ano&quot;, &quot;2021&quot;], [&quot;Produção&quot;, &quot;Una Criatividade!&quot;], [&quot;Produção Executiva&quot;, &quot;Qiah Salla e Maria Teresa Piccoli&quot;], [&quot;Roteiro&quot;, &quot;Chico Caprario e Gabriel Garcia&quot;], [&quot;Direção&quot;, &quot;Gabriel Garcia&quot;], [&quot;Direção de Produção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Arte&quot;, &quot;Diego Oliveira&quot;]]'>
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/serie-ailos.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
     <!-- faixa duplicada para o loop ficar contínuo -->
-    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-year="2019" data-studio="Arapy Produções · Longa-metragem · Direção de Arte, Assistência de Direção" data-tag="Netflix Brasil / TV Cultura">
+    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-credits='[[&quot;Ano&quot;, &quot;2019&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-filme.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-url="https://www.instagram.com/p/DPPHJPMAhA_/" data-title="Crisálida — 2ª Temporada" data-year="2023" data-studio="Arapy Produções · Série, 6 episódios · Direção de Arte, Assistência de Direção" data-tag="Netflix Brasil / TV Cultura">
+    <button type="button" class="poster" data-url="https://www.instagram.com/p/DPPHJPMAhA_/" data-title="Crisálida — 2ª Temporada" data-credits='[[&quot;Ano&quot;, &quot;2023&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t2.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="C4j-FzNUo-8" data-title="Crisálida — 1ª Temporada" data-year="2017" data-studio="Arapy Produções · Série, 4 episódios · Direção de Arte" data-tag="Ficção seriada">
+    <button type="button" class="poster" data-yt="C4j-FzNUo-8" data-title="Crisálida — 1ª Temporada" data-credits='[[&quot;Ano&quot;, &quot;2017&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t1.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster award" data-yt="K9_3iMp36L0" data-title="O Silêncio dos Lobos" data-year="2024/25" data-studio="Vila dos Frames · Curta-metragem · Direção de Arte, Colorização" data-tag="Prêmio Catarinense &amp; LPG 2023">
+    <button type="button" class="poster award" data-yt="K9_3iMp36L0" data-title="O Silêncio dos Lobos" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Produção&quot;, &quot;Vila Cinema&quot;], [&quot;Roteiro e Direção&quot;, &quot;Rodrigo Araujo e Thiago L. Soares&quot;], [&quot;Direção de Fotografia&quot;, &quot;Marx Vamerlatti&quot;], [&quot;Direção de Produção&quot;, &quot;Michelly Hadassa&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/silencio-dos-lobos.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster award" data-yt="eHtk5EDXYwA" data-title="A Última Oração" data-year="2024" data-studio="Vila dos Frames · Média-metragem · Direção de Arte" data-tag="Prêmio Catarinense &amp; LPG 2023">
+    <button type="button" class="poster award" data-yt="eHtk5EDXYwA" data-title="A Última Oração" data-credits='[[&quot;Ano&quot;, &quot;2024&quot;], [&quot;Produção&quot;, &quot;Vila Cinema&quot;], [&quot;Roteiro e Direção&quot;, &quot;Rodrigo Araujo e Thiago L. Soares&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pedro Oliveira&quot;], [&quot;Direção de Produção&quot;, &quot;Luciano Oschelski&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-ultima-oracao.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster award" data-yt="9yzK9BXXvsA" data-title="A Chuva Não Me Viu Passar" data-year="2023" data-studio="Entropia Filmes · Curta-metragem · Assistência de Direção" data-tag="Edital Arnaldo Carreirão">
+    <button type="button" class="poster award" data-yt="9yzK9BXXvsA" data-title="A Chuva Não Me Viu Passar" data-credits='[[&quot;Ano&quot;, &quot;2023&quot;], [&quot;Produção&quot;, &quot;Entropia Filmes&quot;], [&quot;Roteiro e Direção&quot;, &quot;Leonardo Gatti&quot;], [&quot;Direção de Fotografia&quot;, &quot;Eduardo Guerreiro&quot;], [&quot;Direção de Produção&quot;, &quot;Ana Paula Mendes e Tatiana Tanaka&quot;], [&quot;Direção de Arte&quot;, &quot;Cleo Rosa&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-chuva-nao-me-viu-passar.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-url="https://tinyurl.com/srtx6k5n" data-title="Imaginário Bar" data-year="2025" data-studio="SetCom Produções · Curta-metragem · Assistência de Direção" data-tag="Ficção">
+    <button type="button" class="poster" data-url="https://tinyurl.com/srtx6k5n" data-title="Imaginário Bar" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Produção&quot;, &quot;SetCom&quot;], [&quot;Produção Executiva&quot;, &quot;Ana Paula Mendes&quot;], [&quot;Direção&quot;, &quot;Bhig Villas Boas&quot;], [&quot;Direção de Fotografia&quot;, &quot;José Roberto Eliezer, ABC.&quot;], [&quot;Direção de Produção&quot;, &quot;Tatiana Tanaka&quot;], [&quot;Direção de Arte&quot;, &quot;Dicezar Leandro e Josiane Silva&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/imaginario-bar.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-title="11 Minutos" data-year="2025" data-studio="Leandro Forgiarini · Curta-metragem · Colorização" data-tag="Colorização">
+    <button type="button" class="poster" data-title="11 Minutos" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Roteiro e Direção&quot;, &quot;Leandro Forgiarini&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/11-minutos.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="q-PwfgvkM7A" data-title="Entre Paredes" data-year="2022" data-studio="Raça Livre Produções · Curta-metragem · Colorização" data-tag="Colorização">
+    <button type="button" class="poster" data-yt="q-PwfgvkM7A" data-title="Entre Paredes" data-credits='[[&quot;Ano&quot;, &quot;2022&quot;], [&quot;Produção&quot;, &quot;Raça Livre&quot;], [&quot;Roteiro e Direção&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/entre-paredes.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-title="Nova Honda Sahara" data-studio="Boiler Filmes e Yatta" data-tag="3º Assistente de Direção">
+    <button type="button" class="poster" data-title="Minha Época" data-credits='[[&quot;Agência&quot;, &quot;Publicis Brasil&quot;], [&quot;Direção Executiva de Criação&quot;, &quot;Fabio Astolpho (ECD)&quot;], [&quot;__divider__&quot;, &quot;&quot;], [&quot;Produção&quot;, &quot;Boiler Filmes&quot;], [&quot;Produção Executiva&quot;, &quot;Juliana Martellotta&quot;], [&quot;Direção de Cena&quot;, &quot;Dulcídio Caldeira e Plástico&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pablo Lozano&quot;], [&quot;Direção de Produção&quot;, &quot;Yatta Production Service&quot;], [&quot;3º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/nova-honda-sahara.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-title="Crisálida — Curta-metragem" data-studio="Curta-metragem" data-tag="1º Assistente de Direção">
+    <button type="button" class="poster" data-title="Crisálida — Curta-metragem" data-credits='[[&quot;Produção&quot;, &quot;Raça Livre, 30 Por Segundo&quot;], [&quot;Roteiro e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-curta-metragem.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    </button>
+    <button type="button" class="poster" data-yt="mNn1MPQQDMo" data-title="Série Ailos" data-credits='[[&quot;Ano&quot;, &quot;2021&quot;], [&quot;Produção&quot;, &quot;Una Criatividade!&quot;], [&quot;Produção Executiva&quot;, &quot;Qiah Salla e Maria Teresa Piccoli&quot;], [&quot;Roteiro&quot;, &quot;Chico Caprario e Gabriel Garcia&quot;], [&quot;Direção&quot;, &quot;Gabriel Garcia&quot;], [&quot;Direção de Produção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Arte&quot;, &quot;Diego Oliveira&quot;]]'>
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/serie-ailos.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
   </div>
 </div>
@@ -559,9 +566,13 @@
   const modalVideo = document.getElementById('modalVideo');
   const modalSheet = document.getElementById('modalSheet');
 
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
   function openModal(d){
     if(d.yt){
-      modalVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${d.yt}?rel=0&autoplay=1" title="${d.title || ''}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+      modalVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${d.yt}?rel=0&autoplay=1" title="${escapeHtml(d.title || '')}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
     } else if(d.url){
       modalVideo.innerHTML = `<div class="modal-link"><span>Trailer hospedado fora do YouTube</span><a href="${d.url}" target="_blank" rel="noopener">Assistir</a></div>`;
     } else {
@@ -569,10 +580,16 @@
     }
 
     let dl = '';
-    if(d.year)   dl += `<dt>Ano</dt><dd>${d.year}</dd>`;
-    if(d.studio) dl += `<dt>Produtora</dt><dd>${d.studio}</dd>`;
-    if(d.tag)    dl += `<dt>Categoria</dt><dd>${d.tag}</dd>`;
-    modalSheet.innerHTML = `<h3>${d.title || ''}</h3><dl>${dl}</dl>`;
+    let credits = [];
+    try{ credits = d.credits ? JSON.parse(d.credits) : []; }catch(err){ credits = []; }
+    credits.forEach(([label, value]) => {
+      if(label === '__divider__'){
+        dl += `<div class="credit-divider"></div>`;
+      } else if(label && value){
+        dl += `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`;
+      }
+    });
+    modalSheet.innerHTML = `<h3>${escapeHtml(d.title || '')}</h3><dl>${dl}</dl>`;
 
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
