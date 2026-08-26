@@ -273,7 +273,7 @@
   .mo-text-inner p:last-child{margin-bottom:0;}
   @media (max-width:760px){
     .mo-row, .mo-row.reverse{grid-template-columns:1fr; min-height:0;}
-    .mo-video, .mo-row.reverse .mo-video{order:1; aspect-ratio:4/5;}
+    .mo-video, .mo-row.reverse .mo-video{order:1; aspect-ratio:16/9;}
     .mo-text, .mo-row.reverse .mo-text{order:2; padding:32px 6vw;}
   }
 
@@ -304,9 +304,9 @@
      estreito demais em telas altas, então usamos uma proporção mais alta aqui,
      e reduzimos nome/ícone para não dominarem visualmente sobre o vídeo. */
   @media (orientation:portrait){
+    .hero{ min-height:62vh; padding-bottom:clamp(64px,12vh,140px); }
     .venn-mark{ width:clamp(2.6rem, 22vw, 6rem); }
     h1.hero-title{ font-size:clamp(1.2rem, 8.5vw, 2.6rem); }
-    .hero{ padding-bottom:clamp(64px,12vh,140px); }
   }
 </style>
 </head>
