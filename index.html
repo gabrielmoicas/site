@@ -220,7 +220,6 @@
     font-family:var(--mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink);
     border:1px solid var(--ink); padding:10px 20px;
   }
-  .poster.award{border-color:var(--amber);}
 
   /* ---------- MODAL (player + ficha técnica) ---------- */
   .modal{
@@ -245,12 +244,16 @@
     color:var(--ink-muted); font-family:var(--mono); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; text-align:center; padding:20px;
   }
   .modal-video .modal-link a{border:1px solid var(--amber); color:var(--amber); padding:10px 22px;}
-  .modal-sheet{padding:28px 32px 34px; max-height:60vh; overflow-y:auto;}
-  .modal-sheet h3{font-family:var(--display); font-weight:500; font-size:1.6rem; margin-bottom:18px; line-height:1.2;}
-  .modal-sheet dl{display:grid; grid-template-columns:auto 1fr; gap:4px 22px; align-items:start;}
-  .modal-sheet dt{font-family:var(--mono); font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); padding-top:2px;}
-  .modal-sheet dd{color:var(--ink-muted); font-size:0.92rem;}
-  .modal-sheet .credit-divider{grid-column:1/-1; height:1px; background:var(--line); margin:8px 0 2px;}
+  .modal-sheet{padding:28px 32px 34px; max-height:60vh; overflow-y:auto; text-align:center;}
+  .modal-sheet h3{font-family:var(--display); font-weight:500; font-size:1.6rem; margin-bottom:16px; line-height:1.2;}
+  .modal-sheet .credit-mine{
+    color:var(--amber); font-family:var(--mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+    margin-bottom:16px; line-height:1.7;
+  }
+  .modal-sheet .credit-crew{
+    color:var(--ink-muted); font-family:var(--mono); font-size:0.66rem; letter-spacing:0.03em; text-transform:uppercase;
+    line-height:1.9;
+  }
 
   /* ---------- MAKING OF (vídeo em loop + texto, linhas alternadas) ---------- */
   .mo-row{
@@ -593,17 +596,21 @@
       modalVideo.innerHTML = `<div class="modal-link"><span>Trailer em breve</span></div>`;
     }
 
-    let dl = '';
     let credits = [];
     try{ credits = d.credits ? JSON.parse(d.credits) : []; }catch(err){ credits = []; }
+    const mine = [];
+    const rest = [];
     credits.forEach(([label, value]) => {
-      if(label === '__divider__'){
-        dl += `<div class="credit-divider"></div>`;
-      } else if(label && value){
-        dl += `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`;
+      if(label === '__divider__' || !label || !value) return;
+      if(value.trim() === 'Gabriel Garcia'){
+        mine.push(label);
+      } else {
+        rest.push(`${label}: ${value}`);
       }
     });
-    modalSheet.innerHTML = `<h3>${escapeHtml(d.title || '')}</h3><dl>${dl}</dl>`;
+    const mineHtml = mine.length ? `<div class="credit-mine">${mine.map(escapeHtml).join(' &nbsp;·&nbsp; ')}</div>` : '';
+    const restHtml = rest.length ? `<div class="credit-crew">${rest.map(escapeHtml).join(' &nbsp;·&nbsp; ')}</div>` : '';
+    modalSheet.innerHTML = `<h3>${escapeHtml(d.title || '')}</h3>${mineHtml}${restHtml}`;
 
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
