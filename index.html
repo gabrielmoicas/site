@@ -276,7 +276,7 @@
     display:flex; align-items:center; order:2;
     padding:clamp(32px,6vw,88px);
   }
-  .mo-row.reverse .mo-text{order:1;}
+  .mo-row.reverse .mo-text{order:1; justify-content:flex-end;}
   .mo-text-inner{max-width:480px;}
   .mo-text-inner .eyebrow{margin-bottom:16px;}
   .mo-text-inner h3{
@@ -288,7 +288,7 @@
   @media (max-width:760px){
     .mo-row, .mo-row.reverse{grid-template-columns:1fr; min-height:0;}
     .mo-video, .mo-row.reverse .mo-video{order:1; aspect-ratio:16/9;}
-    .mo-text, .mo-row.reverse .mo-text{order:2; padding:32px 6vw;}
+    .mo-text, .mo-row.reverse .mo-text{order:2; padding:32px 6vw; justify-content:flex-start;}
   }
 
   /* ---------- CTA / CONTATO ---------- */
@@ -389,10 +389,10 @@
     <button type="button" class="poster" data-yt="a6iyTUMR8PQ" data-title="Minha Época" data-credits='[[&quot;Agência&quot;, &quot;Publicis Brasil&quot;], [&quot;Direção Executiva de Criação&quot;, &quot;Fabio Astolpho (ECD)&quot;], [&quot;__divider__&quot;, &quot;&quot;], [&quot;Produção&quot;, &quot;Boiler Filmes&quot;], [&quot;Produção Executiva&quot;, &quot;Juliana Martellotta&quot;], [&quot;Direção de Cena&quot;, &quot;Dulcídio Caldeira e Plástico&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pablo Lozano&quot;], [&quot;Direção de Produção&quot;, &quot;Yatta Production Service&quot;], [&quot;3º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/nova-honda-sahara.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-title="Crisálida — Curta-metragem" data-credits='[[&quot;Produção&quot;, &quot;Raça Livre, 30 Por Segundo&quot;], [&quot;Roteiro e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
+    <button type="button" class="poster" data-yt="inyBfM-QxIw" data-title="Crisálida — Curta-metragem" data-credits='[[&quot;Produção&quot;, &quot;Raça Livre, 30 Por Segundo&quot;], [&quot;Roteiro e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-curta-metragem.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="mNn1MPQQDMo" data-title="Série Ailos" data-credits='[[&quot;Ano&quot;, &quot;2021&quot;], [&quot;Produção&quot;, &quot;Una Criatividade!&quot;], [&quot;Produção Executiva&quot;, &quot;Qiah Salla e Maria Teresa Piccoli&quot;], [&quot;Roteiro&quot;, &quot;Chico Caprario e Gabriel Garcia&quot;], [&quot;Direção&quot;, &quot;Gabriel Garcia&quot;], [&quot;Direção de Produção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Arte&quot;, &quot;Diego Oliveira&quot;]]'>
+    <button type="button" class="poster" data-yt="YI6EoG0r2LY" data-title="Série Ailos" data-credits='[[&quot;Ano&quot;, &quot;2021&quot;], [&quot;Produção&quot;, &quot;Una Criatividade!&quot;], [&quot;Produção Executiva&quot;, &quot;Qiah Salla e Maria Teresa Piccoli&quot;], [&quot;Roteiro&quot;, &quot;Chico Caprario e Gabriel Garcia&quot;], [&quot;Direção&quot;, &quot;Gabriel Garcia&quot;], [&quot;Direção de Produção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Arte&quot;, &quot;Diego Oliveira&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/serie-ailos.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
     <!-- faixa duplicada para o loop ficar contínuo -->
@@ -426,10 +426,10 @@
     <button type="button" class="poster" data-yt="a6iyTUMR8PQ" data-title="Minha Época" data-credits='[[&quot;Agência&quot;, &quot;Publicis Brasil&quot;], [&quot;Direção Executiva de Criação&quot;, &quot;Fabio Astolpho (ECD)&quot;], [&quot;__divider__&quot;, &quot;&quot;], [&quot;Produção&quot;, &quot;Boiler Filmes&quot;], [&quot;Produção Executiva&quot;, &quot;Juliana Martellotta&quot;], [&quot;Direção de Cena&quot;, &quot;Dulcídio Caldeira e Plástico&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pablo Lozano&quot;], [&quot;Direção de Produção&quot;, &quot;Yatta Production Service&quot;], [&quot;3º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/nova-honda-sahara.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-title="Crisálida — Curta-metragem" data-credits='[[&quot;Produção&quot;, &quot;Raça Livre, 30 Por Segundo&quot;], [&quot;Roteiro e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
+    <button type="button" class="poster" data-yt="inyBfM-QxIw" data-title="Crisálida — Curta-metragem" data-credits='[[&quot;Produção&quot;, &quot;Raça Livre, 30 Por Segundo&quot;], [&quot;Roteiro e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-curta-metragem.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="mNn1MPQQDMo" data-title="Série Ailos" data-credits='[[&quot;Ano&quot;, &quot;2021&quot;], [&quot;Produção&quot;, &quot;Una Criatividade!&quot;], [&quot;Produção Executiva&quot;, &quot;Qiah Salla e Maria Teresa Piccoli&quot;], [&quot;Roteiro&quot;, &quot;Chico Caprario e Gabriel Garcia&quot;], [&quot;Direção&quot;, &quot;Gabriel Garcia&quot;], [&quot;Direção de Produção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Arte&quot;, &quot;Diego Oliveira&quot;]]'>
+    <button type="button" class="poster" data-yt="YI6EoG0r2LY" data-title="Série Ailos" data-credits='[[&quot;Ano&quot;, &quot;2021&quot;], [&quot;Produção&quot;, &quot;Una Criatividade!&quot;], [&quot;Produção Executiva&quot;, &quot;Qiah Salla e Maria Teresa Piccoli&quot;], [&quot;Roteiro&quot;, &quot;Chico Caprario e Gabriel Garcia&quot;], [&quot;Direção&quot;, &quot;Gabriel Garcia&quot;], [&quot;Direção de Produção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Arte&quot;, &quot;Diego Oliveira&quot;]]'>
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/serie-ailos.jpg" alt="" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
   </div>
