@@ -144,7 +144,7 @@
   .films-track{
     display:flex; width:max-content; gap:22px; will-change:transform;
   }
-  .films-track .poster{width:205px; flex:0 0 auto;}
+  .films-track .poster{width:235px; flex:0 0 auto;}
   .films-track .poster-img, .films-track img{-webkit-user-drag:none; user-drag:none;}
 
   /* ---------- MARQUEE (logos de produtoras) ---------- */
@@ -318,10 +318,14 @@
   }
 
   @media (max-width:760px){
-    header{padding:18px 6vw;}
+    header{
+      padding:14px 6vw; mix-blend-mode:normal;
+      background:rgba(11,15,13,0.78); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line);
+    }
     nav{position:fixed; top:0; right:0; height:100vh; width:min(78vw,320px); background:var(--bg); flex-direction:column; justify-content:center; align-items:flex-start; padding:0 40px; transform:translateX(100%); transition:transform 0.4s ease; gap:26px; mix-blend-mode:normal; border-left:1px solid var(--line);}
     nav.open{transform:translateX(0);}
-    .nav-toggle{display:block; background:none; border:none; color:var(--ink); font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; z-index:60; mix-blend-mode:difference;}
+    .nav-toggle{display:block; background:none; border:none; color:var(--ink); font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; z-index:60; mix-blend-mode:normal;}
     .films-track .poster{width:150px;}
   }
 
