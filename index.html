@@ -19,6 +19,30 @@
 <meta name="twitter:title" content="Gabriel Garcia — Diretor de Arte, Assistência de Direção & Colorista">
 <meta name="twitter:description" content="Portfólio de Gabriel Garcia — Direção de Arte, Assistência de Direção e Colorização.">
 <meta name="twitter:image" content="https://gabrielgarcia.art.br/assets/social/og-preview.jpg">
+
+<link rel="canonical" href="https://gabrielgarcia.art.br/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0b0f0d">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Gabriel Garcia",
+  "url": "https://gabrielgarcia.art.br/",
+  "image": "https://gabrielgarcia.art.br/assets/brand/gabriel-foto.webp",
+  "jobTitle": ["Diretor de Arte", "Assistente de Direção", "Colorista"],
+  "knowsAbout": ["Direção de Arte", "Assistência de Direção", "Colorização"],
+  "email": "mailto:gabrielgarcia.pub@gmail.com",
+  "address": {"@type": "PostalAddress", "addressRegion": "SC", "addressCountry": "BR"},
+  "sameAs": [
+    "https://www.instagram.com/gabrielmoicas/",
+    "https://www.linkedin.com/in/gabrielgarciacinema/"
+  ]
+}
+</script>
 <style>
   :root{
     --bg: #0b0f0d;
@@ -222,11 +246,16 @@
   }
 
   /* ---------- MODAL (player + ficha técnica) ---------- */
+  /* <dialog> nativo: prende o foco dentro, fecha no Esc e devolve o foco ao pôster */
   .modal{
-    position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center;
-    padding:5vw; opacity:0; pointer-events:none; transition:opacity 0.3s ease;
+    position:fixed; inset:0; z-index:200; width:100%; height:100%; max-width:none; max-height:none;
+    margin:0; border:0; background:transparent; color:inherit;
+    padding:5vw;
   }
-  .modal.open{opacity:1; pointer-events:auto;}
+  .modal[open]{display:flex; align-items:center; justify-content:center; animation:modalIn 0.3s ease;}
+  .modal::backdrop{background:transparent;}
+  @keyframes modalIn{ from{opacity:0;} to{opacity:1;} }
+  body.modal-open{overflow:hidden;}
   .modal-backdrop{position:absolute; inset:0; background:rgba(6,8,7,0.92); backdrop-filter:blur(4px);}
   .modal-panel{
     position:relative; z-index:1; width:min(880px,100%); max-height:90vh; overflow-y:auto;
@@ -323,7 +352,7 @@
       background:rgba(11,15,13,0.78); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
       border-bottom:1px solid var(--line);
     }
-    nav{position:fixed; top:0; right:0; height:100vh; width:min(78vw,320px); background:var(--bg); flex-direction:column; justify-content:center; align-items:flex-start; padding:0 40px; transform:translateX(100%); transition:transform 0.4s ease; gap:26px; mix-blend-mode:normal; border-left:1px solid var(--line);}
+    nav{position:fixed; top:0; right:0; height:100vh; height:100dvh; width:min(78vw,320px); background:var(--bg); flex-direction:column; justify-content:center; align-items:flex-start; padding:0 40px; transform:translateX(100%); transition:transform 0.4s ease; gap:26px; mix-blend-mode:normal; border-left:1px solid var(--line);}
     nav.open{transform:translateX(0);}
     .nav-toggle{display:block; background:none; border:none; color:var(--ink); font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; z-index:60; mix-blend-mode:normal;}
     .films-track .poster{width:150px;}
@@ -344,10 +373,10 @@
 <div class="grain"></div>
 
 <header>
-  <a class="mark" href="#top">
+  <a class="mark" href="#top" aria-label="Gabriel Garcia — início">
     <span class="mark-icon" aria-hidden="true"><svg viewBox="0 0 942 553"><path fill="currentColor" fill-rule="evenodd" d="M503,187 L504,191 L523,218 L533,237 L542,209 L555,183 L565,168 L580,150 L607,126 L631,111 L662,99 L691,93 L728,92 L752,95 L774,101 L787,106 L818,123 L832,134 L851,153 L864,171 L878,198 L924,198 L913,174 L891,140 L865,111 L843,93 L818,78 L788,65 L754,56 L723,53 L690,54 L659,59 L623,71 L592,87 L568,104 L543,128 L523,153 Z M6,239 L4,279 L10,322 L29,371 L54,407 L85,437 L120,460 L162,477 L207,485 L281,480 L344,454 L400,403 L433,342 L403,287 L220,287 L220,331 L386,334 L364,373 L336,403 L312,420 L266,438 L205,442 L176,437 L136,421 L105,399 L75,363 L57,323 L50,283 L54,228 L65,194 L92,151 L129,119 L173,99 L211,92 L257,94 L295,105 L332,127 L370,168 L488,362 L531,420 L591,466 L653,488 L702,493 L756,489 L805,475 L851,450 L883,422 L912,382 L930,341 L940,286 L698,284 L697,328 L887,329 L855,385 L800,429 L767,442 L725,449 L647,442 L600,421 L556,382 L408,147 L372,107 L312,69 L238,53 L158,63 L117,80 L85,101 L53,133 L32,164 Z"/></svg></span>
   </a>
-  <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">MENU</button>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">MENU</button>
   <nav id="nav">
     <a href="#trabalhos">Trabalhos</a>
     <a href="#contato">Contato</a>
@@ -355,7 +384,10 @@
 </header>
 
 <section class="hero" id="top">
-  <video class="hero-video" autoplay muted loop playsinline poster="assets/reel-poster.jpg">
+  <!-- Sem autoplay: o script só dá play se o visitante não pediu "reduzir movimento".
+       No celular (até 760px) carrega a versão 720p, bem mais leve. -->
+  <video class="hero-video" muted loop playsinline preload="none" poster="assets/reel-poster.jpg">
+    <source src="assets/reel-720.mp4" type="video/mp4" media="(max-width: 760px)">
     <source src="assets/reel.mp4" type="video/mp4">
   </video>
   <div class="venn-mark" aria-hidden="true">
@@ -374,77 +406,77 @@
      Clique em qualquer pôster abre o player + ficha técnica. Todos os trabalhos ficam juntos, nesta faixa única. -->
 <div class="films-wrap" id="trabalhos">
   <div class="films-track" id="filmsTrack">
-    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-credits='[[&quot;Ano&quot;, &quot;2019&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
-      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-filme.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-credits='[[&quot;Ano&quot;, &quot;2019&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-label="Crisálida — O Filme — trailer e ficha técnica">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-filme.webp" alt="Pôster de Crisálida — O Filme" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="6bb_2GPVKsg" data-title="Crisálida — 2ª Temporada" data-credits='[[&quot;Ano&quot;, &quot;2023&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
-      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t2.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    <button type="button" class="poster" data-yt="6bb_2GPVKsg" data-title="Crisálida — 2ª Temporada" data-credits='[[&quot;Ano&quot;, &quot;2023&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-label="Crisálida — 2ª Temporada — trailer e ficha técnica">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t2.webp" alt="Pôster de Crisálida — 2ª Temporada" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="C4j-FzNUo-8" data-title="Crisálida — 1ª Temporada" data-credits='[[&quot;Ano&quot;, &quot;2017&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
-      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t1.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    <button type="button" class="poster" data-yt="C4j-FzNUo-8" data-title="Crisálida — 1ª Temporada" data-credits='[[&quot;Ano&quot;, &quot;2017&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-label="Crisálida — 1ª Temporada — trailer e ficha técnica">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t1.webp" alt="Pôster de Crisálida — 1ª Temporada" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster award" data-yt="L6ZkoStSEKk" data-title="O Silêncio dos Lobos" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Produção&quot;, &quot;Vila Cinema&quot;], [&quot;Roteiro e Direção&quot;, &quot;Rodrigo Araujo e Thiago L. Soares&quot;], [&quot;Direção de Fotografia&quot;, &quot;Marx Vamerlatti&quot;], [&quot;Direção de Produção&quot;, &quot;Michelly Hadassa&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]'>
-      <div class="poster-art"></div><img class="poster-img" src="assets/posters/silencio-dos-lobos.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    <button type="button" class="poster award" data-yt="L6ZkoStSEKk" data-title="O Silêncio dos Lobos" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Produção&quot;, &quot;Vila Cinema&quot;], [&quot;Roteiro e Direção&quot;, &quot;Rodrigo Araujo e Thiago L. Soares&quot;], [&quot;Direção de Fotografia&quot;, &quot;Marx Vamerlatti&quot;], [&quot;Direção de Produção&quot;, &quot;Michelly Hadassa&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]' aria-label="O Silêncio dos Lobos — trailer e ficha técnica">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/silencio-dos-lobos.webp" alt="Pôster de O Silêncio dos Lobos" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster award" data-yt="eHtk5EDXYwA" data-title="A Última Oração" data-credits='[[&quot;Ano&quot;, &quot;2024&quot;], [&quot;Produção&quot;, &quot;Vila Cinema&quot;], [&quot;Roteiro e Direção&quot;, &quot;Rodrigo Araujo e Thiago L. Soares&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pedro Oliveira&quot;], [&quot;Direção de Produção&quot;, &quot;Luciano Oschelski&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;]]'>
-      <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-ultima-oracao.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    <button type="button" class="poster award" data-yt="eHtk5EDXYwA" data-title="A Última Oração" data-credits='[[&quot;Ano&quot;, &quot;2024&quot;], [&quot;Produção&quot;, &quot;Vila Cinema&quot;], [&quot;Roteiro e Direção&quot;, &quot;Rodrigo Araujo e Thiago L. Soares&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pedro Oliveira&quot;], [&quot;Direção de Produção&quot;, &quot;Luciano Oschelski&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;]]' aria-label="A Última Oração — trailer e ficha técnica">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-ultima-oracao.webp" alt="Pôster de A Última Oração" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster award" data-yt="9yzK9BXXvsA" data-title="A Chuva Não Me Viu Passar" data-credits='[[&quot;Ano&quot;, &quot;2023&quot;], [&quot;Produção&quot;, &quot;Entropia Filmes&quot;], [&quot;Roteiro e Direção&quot;, &quot;Leonardo Gatti&quot;], [&quot;Direção de Fotografia&quot;, &quot;Eduardo Guerreiro&quot;], [&quot;Direção de Produção&quot;, &quot;Ana Paula Mendes e Tatiana Tanaka&quot;], [&quot;Direção de Arte&quot;, &quot;Cleo Rosa&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
-      <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-chuva-nao-me-viu-passar.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    <button type="button" class="poster award" data-yt="9yzK9BXXvsA" data-title="A Chuva Não Me Viu Passar" data-credits='[[&quot;Ano&quot;, &quot;2023&quot;], [&quot;Produção&quot;, &quot;Entropia Filmes&quot;], [&quot;Roteiro e Direção&quot;, &quot;Leonardo Gatti&quot;], [&quot;Direção de Fotografia&quot;, &quot;Eduardo Guerreiro&quot;], [&quot;Direção de Produção&quot;, &quot;Ana Paula Mendes e Tatiana Tanaka&quot;], [&quot;Direção de Arte&quot;, &quot;Cleo Rosa&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-label="A Chuva Não Me Viu Passar — trailer e ficha técnica">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-chuva-nao-me-viu-passar.webp" alt="Pôster de A Chuva Não Me Viu Passar" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-url="https://tinyurl.com/srtx6k5n" data-title="Imaginário Bar" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Produção&quot;, &quot;SetCom&quot;], [&quot;Produção Executiva&quot;, &quot;Ana Paula Mendes&quot;], [&quot;Direção&quot;, &quot;Bhig Villas Boas&quot;], [&quot;Direção de Fotografia&quot;, &quot;José Roberto Eliezer, ABC.&quot;], [&quot;Direção de Produção&quot;, &quot;Tatiana Tanaka&quot;], [&quot;Direção de Arte&quot;, &quot;Dicezar Leandro e Josiane Silva&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
-      <div class="poster-art"></div><img class="poster-img" src="assets/posters/imaginario-bar.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    <button type="button" class="poster" data-url="https://tinyurl.com/srtx6k5n" data-title="Imaginário Bar" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Produção&quot;, &quot;SetCom&quot;], [&quot;Produção Executiva&quot;, &quot;Ana Paula Mendes&quot;], [&quot;Direção&quot;, &quot;Bhig Villas Boas&quot;], [&quot;Direção de Fotografia&quot;, &quot;José Roberto Eliezer, ABC.&quot;], [&quot;Direção de Produção&quot;, &quot;Tatiana Tanaka&quot;], [&quot;Direção de Arte&quot;, &quot;Dicezar Leandro e Josiane Silva&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-label="Imaginário Bar — trailer e ficha técnica">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/imaginario-bar.webp" alt="Pôster de Imaginário Bar" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-title="11 Minutos" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Roteiro e Direção&quot;, &quot;Leandro Forgiarini&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]'>
-      <div class="poster-art"></div><img class="poster-img" src="assets/posters/11-minutos.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    <button type="button" class="poster" data-title="11 Minutos" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Roteiro e Direção&quot;, &quot;Leandro Forgiarini&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]' aria-label="11 Minutos — trailer e ficha técnica">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/11-minutos.webp" alt="Pôster de 11 Minutos" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="CO2LSObZh_Y" data-title="Entre Paredes" data-credits='[[&quot;Ano&quot;, &quot;2022&quot;], [&quot;Produção&quot;, &quot;Raça Livre&quot;], [&quot;Roteiro e Direção&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]'>
-      <div class="poster-art"></div><img class="poster-img" src="assets/posters/entre-paredes.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    <button type="button" class="poster" data-yt="CO2LSObZh_Y" data-title="Entre Paredes" data-credits='[[&quot;Ano&quot;, &quot;2022&quot;], [&quot;Produção&quot;, &quot;Raça Livre&quot;], [&quot;Roteiro e Direção&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]' aria-label="Entre Paredes — trailer e ficha técnica">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/entre-paredes.webp" alt="Pôster de Entre Paredes" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="a6iyTUMR8PQ" data-title="Minha Época" data-credits='[[&quot;Agência&quot;, &quot;Publicis Brasil&quot;], [&quot;Direção Executiva de Criação&quot;, &quot;Fabio Astolpho (ECD)&quot;], [&quot;__divider__&quot;, &quot;&quot;], [&quot;Produção&quot;, &quot;Boiler Filmes&quot;], [&quot;Produção Executiva&quot;, &quot;Juliana Martellotta&quot;], [&quot;Direção de Cena&quot;, &quot;Dulcídio Caldeira e Plástico&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pablo Lozano&quot;], [&quot;Direção de Produção&quot;, &quot;Yatta Production Service&quot;], [&quot;3º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
-      <div class="poster-art"></div><img class="poster-img" src="assets/posters/nova-honda-sahara.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    <button type="button" class="poster" data-yt="a6iyTUMR8PQ" data-title="Minha Época" data-credits='[[&quot;Agência&quot;, &quot;Publicis Brasil&quot;], [&quot;Direção Executiva de Criação&quot;, &quot;Fabio Astolpho (ECD)&quot;], [&quot;__divider__&quot;, &quot;&quot;], [&quot;Produção&quot;, &quot;Boiler Filmes&quot;], [&quot;Produção Executiva&quot;, &quot;Juliana Martellotta&quot;], [&quot;Direção de Cena&quot;, &quot;Dulcídio Caldeira e Plástico&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pablo Lozano&quot;], [&quot;Direção de Produção&quot;, &quot;Yatta Production Service&quot;], [&quot;3º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-label="Minha Época — trailer e ficha técnica">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/nova-honda-sahara.webp" alt="Pôster de Minha Época" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="inyBfM-QxIw" data-title="Crisálida — Curta-metragem" data-credits='[[&quot;Produção&quot;, &quot;Raça Livre, 30 Por Segundo&quot;], [&quot;Roteiro e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
-      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-curta-metragem.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    <button type="button" class="poster" data-yt="inyBfM-QxIw" data-title="Crisálida — Curta-metragem" data-credits='[[&quot;Produção&quot;, &quot;Raça Livre, 30 Por Segundo&quot;], [&quot;Roteiro e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-label="Crisálida — Curta-metragem — trailer e ficha técnica">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-curta-metragem.webp" alt="Pôster de Crisálida — Curta-metragem" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="YI6EoG0r2LY" data-title="Série Ailos" data-credits='[[&quot;Ano&quot;, &quot;2021&quot;], [&quot;Produção&quot;, &quot;Una Criatividade!&quot;], [&quot;Produção Executiva&quot;, &quot;Qiah Salla e Maria Teresa Piccoli&quot;], [&quot;Roteiro&quot;, &quot;Chico Caprario e Gabriel Garcia&quot;], [&quot;Direção&quot;, &quot;Gabriel Garcia&quot;], [&quot;Direção de Produção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Arte&quot;, &quot;Diego Oliveira&quot;]]'>
-      <div class="poster-art"></div><img class="poster-img" src="assets/posters/serie-ailos.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
+    <button type="button" class="poster" data-yt="YI6EoG0r2LY" data-title="Série Ailos" data-credits='[[&quot;Ano&quot;, &quot;2021&quot;], [&quot;Produção&quot;, &quot;Una Criatividade!&quot;], [&quot;Produção Executiva&quot;, &quot;Qiah Salla e Maria Teresa Piccoli&quot;], [&quot;Roteiro&quot;, &quot;Chico Caprario e Gabriel Garcia&quot;], [&quot;Direção&quot;, &quot;Gabriel Garcia&quot;], [&quot;Direção de Produção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Arte&quot;, &quot;Diego Oliveira&quot;]]' aria-label="Série Ailos — trailer e ficha técnica">
+      <div class="poster-art"></div><img class="poster-img" src="assets/posters/serie-ailos.webp" alt="Pôster de Série Ailos" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
     <!-- faixa duplicada para o loop ficar contínuo -->
-    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-credits='[[&quot;Ano&quot;, &quot;2019&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
+    <button type="button" class="poster award" data-yt="zkIRJuMCcb4" data-title="Crisálida — O Filme" data-credits='[[&quot;Ano&quot;, &quot;2019&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-hidden="true" tabindex="-1">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-filme.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="6bb_2GPVKsg" data-title="Crisálida — 2ª Temporada" data-credits='[[&quot;Ano&quot;, &quot;2023&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
+    <button type="button" class="poster" data-yt="6bb_2GPVKsg" data-title="Crisálida — 2ª Temporada" data-credits='[[&quot;Ano&quot;, &quot;2023&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-hidden="true" tabindex="-1">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t2.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="C4j-FzNUo-8" data-title="Crisálida — 1ª Temporada" data-credits='[[&quot;Ano&quot;, &quot;2017&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
+    <button type="button" class="poster" data-yt="C4j-FzNUo-8" data-title="Crisálida — 1ª Temporada" data-credits='[[&quot;Ano&quot;, &quot;2017&quot;], [&quot;Produção&quot;, &quot;Arapy, Raça Livre, TVi&quot;], [&quot;Criação e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Direção de Produção&quot;, &quot;Nora Carús&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-hidden="true" tabindex="-1">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-t1.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster award" data-yt="L6ZkoStSEKk" data-title="O Silêncio dos Lobos" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Produção&quot;, &quot;Vila Cinema&quot;], [&quot;Roteiro e Direção&quot;, &quot;Rodrigo Araujo e Thiago L. Soares&quot;], [&quot;Direção de Fotografia&quot;, &quot;Marx Vamerlatti&quot;], [&quot;Direção de Produção&quot;, &quot;Michelly Hadassa&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]'>
+    <button type="button" class="poster award" data-yt="L6ZkoStSEKk" data-title="O Silêncio dos Lobos" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Produção&quot;, &quot;Vila Cinema&quot;], [&quot;Roteiro e Direção&quot;, &quot;Rodrigo Araujo e Thiago L. Soares&quot;], [&quot;Direção de Fotografia&quot;, &quot;Marx Vamerlatti&quot;], [&quot;Direção de Produção&quot;, &quot;Michelly Hadassa&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]' aria-hidden="true" tabindex="-1">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/silencio-dos-lobos.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster award" data-yt="eHtk5EDXYwA" data-title="A Última Oração" data-credits='[[&quot;Ano&quot;, &quot;2024&quot;], [&quot;Produção&quot;, &quot;Vila Cinema&quot;], [&quot;Roteiro e Direção&quot;, &quot;Rodrigo Araujo e Thiago L. Soares&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pedro Oliveira&quot;], [&quot;Direção de Produção&quot;, &quot;Luciano Oschelski&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;]]'>
+    <button type="button" class="poster award" data-yt="eHtk5EDXYwA" data-title="A Última Oração" data-credits='[[&quot;Ano&quot;, &quot;2024&quot;], [&quot;Produção&quot;, &quot;Vila Cinema&quot;], [&quot;Roteiro e Direção&quot;, &quot;Rodrigo Araujo e Thiago L. Soares&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pedro Oliveira&quot;], [&quot;Direção de Produção&quot;, &quot;Luciano Oschelski&quot;], [&quot;Direção de Arte&quot;, &quot;Gabriel Garcia&quot;]]' aria-hidden="true" tabindex="-1">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-ultima-oracao.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster award" data-yt="9yzK9BXXvsA" data-title="A Chuva Não Me Viu Passar" data-credits='[[&quot;Ano&quot;, &quot;2023&quot;], [&quot;Produção&quot;, &quot;Entropia Filmes&quot;], [&quot;Roteiro e Direção&quot;, &quot;Leonardo Gatti&quot;], [&quot;Direção de Fotografia&quot;, &quot;Eduardo Guerreiro&quot;], [&quot;Direção de Produção&quot;, &quot;Ana Paula Mendes e Tatiana Tanaka&quot;], [&quot;Direção de Arte&quot;, &quot;Cleo Rosa&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
+    <button type="button" class="poster award" data-yt="9yzK9BXXvsA" data-title="A Chuva Não Me Viu Passar" data-credits='[[&quot;Ano&quot;, &quot;2023&quot;], [&quot;Produção&quot;, &quot;Entropia Filmes&quot;], [&quot;Roteiro e Direção&quot;, &quot;Leonardo Gatti&quot;], [&quot;Direção de Fotografia&quot;, &quot;Eduardo Guerreiro&quot;], [&quot;Direção de Produção&quot;, &quot;Ana Paula Mendes e Tatiana Tanaka&quot;], [&quot;Direção de Arte&quot;, &quot;Cleo Rosa&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-hidden="true" tabindex="-1">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/a-chuva-nao-me-viu-passar.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-url="https://tinyurl.com/srtx6k5n" data-title="Imaginário Bar" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Produção&quot;, &quot;SetCom&quot;], [&quot;Produção Executiva&quot;, &quot;Ana Paula Mendes&quot;], [&quot;Direção&quot;, &quot;Bhig Villas Boas&quot;], [&quot;Direção de Fotografia&quot;, &quot;José Roberto Eliezer, ABC.&quot;], [&quot;Direção de Produção&quot;, &quot;Tatiana Tanaka&quot;], [&quot;Direção de Arte&quot;, &quot;Dicezar Leandro e Josiane Silva&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
+    <button type="button" class="poster" data-url="https://tinyurl.com/srtx6k5n" data-title="Imaginário Bar" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Produção&quot;, &quot;SetCom&quot;], [&quot;Produção Executiva&quot;, &quot;Ana Paula Mendes&quot;], [&quot;Direção&quot;, &quot;Bhig Villas Boas&quot;], [&quot;Direção de Fotografia&quot;, &quot;José Roberto Eliezer, ABC.&quot;], [&quot;Direção de Produção&quot;, &quot;Tatiana Tanaka&quot;], [&quot;Direção de Arte&quot;, &quot;Dicezar Leandro e Josiane Silva&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-hidden="true" tabindex="-1">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/imaginario-bar.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-title="11 Minutos" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Roteiro e Direção&quot;, &quot;Leandro Forgiarini&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]'>
+    <button type="button" class="poster" data-title="11 Minutos" data-credits='[[&quot;Ano&quot;, &quot;2025&quot;], [&quot;Roteiro e Direção&quot;, &quot;Leandro Forgiarini&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]' aria-hidden="true" tabindex="-1">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/11-minutos.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="CO2LSObZh_Y" data-title="Entre Paredes" data-credits='[[&quot;Ano&quot;, &quot;2022&quot;], [&quot;Produção&quot;, &quot;Raça Livre&quot;], [&quot;Roteiro e Direção&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]'>
+    <button type="button" class="poster" data-yt="CO2LSObZh_Y" data-title="Entre Paredes" data-credits='[[&quot;Ano&quot;, &quot;2022&quot;], [&quot;Produção&quot;, &quot;Raça Livre&quot;], [&quot;Roteiro e Direção&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;Colorização&quot;, &quot;Gabriel Garcia&quot;]]' aria-hidden="true" tabindex="-1">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/entre-paredes.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="a6iyTUMR8PQ" data-title="Minha Época" data-credits='[[&quot;Agência&quot;, &quot;Publicis Brasil&quot;], [&quot;Direção Executiva de Criação&quot;, &quot;Fabio Astolpho (ECD)&quot;], [&quot;__divider__&quot;, &quot;&quot;], [&quot;Produção&quot;, &quot;Boiler Filmes&quot;], [&quot;Produção Executiva&quot;, &quot;Juliana Martellotta&quot;], [&quot;Direção de Cena&quot;, &quot;Dulcídio Caldeira e Plástico&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pablo Lozano&quot;], [&quot;Direção de Produção&quot;, &quot;Yatta Production Service&quot;], [&quot;3º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
+    <button type="button" class="poster" data-yt="a6iyTUMR8PQ" data-title="Minha Época" data-credits='[[&quot;Agência&quot;, &quot;Publicis Brasil&quot;], [&quot;Direção Executiva de Criação&quot;, &quot;Fabio Astolpho (ECD)&quot;], [&quot;__divider__&quot;, &quot;&quot;], [&quot;Produção&quot;, &quot;Boiler Filmes&quot;], [&quot;Produção Executiva&quot;, &quot;Juliana Martellotta&quot;], [&quot;Direção de Cena&quot;, &quot;Dulcídio Caldeira e Plástico&quot;], [&quot;Direção de Fotografia&quot;, &quot;Pablo Lozano&quot;], [&quot;Direção de Produção&quot;, &quot;Yatta Production Service&quot;], [&quot;3º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-hidden="true" tabindex="-1">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/nova-honda-sahara.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="inyBfM-QxIw" data-title="Crisálida — Curta-metragem" data-credits='[[&quot;Produção&quot;, &quot;Raça Livre, 30 Por Segundo&quot;], [&quot;Roteiro e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]'>
+    <button type="button" class="poster" data-yt="inyBfM-QxIw" data-title="Crisálida — Curta-metragem" data-credits='[[&quot;Produção&quot;, &quot;Raça Livre, 30 Por Segundo&quot;], [&quot;Roteiro e Produção Executiva&quot;, &quot;Alessandra da Rosa Pinho&quot;], [&quot;Direção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Fotografia&quot;, &quot;Edison Fattori&quot;], [&quot;1º Assistente de Direção&quot;, &quot;Gabriel Garcia&quot;]]' aria-hidden="true" tabindex="-1">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/crisalida-curta-metragem.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
-    <button type="button" class="poster" data-yt="YI6EoG0r2LY" data-title="Série Ailos" data-credits='[[&quot;Ano&quot;, &quot;2021&quot;], [&quot;Produção&quot;, &quot;Una Criatividade!&quot;], [&quot;Produção Executiva&quot;, &quot;Qiah Salla e Maria Teresa Piccoli&quot;], [&quot;Roteiro&quot;, &quot;Chico Caprario e Gabriel Garcia&quot;], [&quot;Direção&quot;, &quot;Gabriel Garcia&quot;], [&quot;Direção de Produção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Arte&quot;, &quot;Diego Oliveira&quot;]]'>
+    <button type="button" class="poster" data-yt="YI6EoG0r2LY" data-title="Série Ailos" data-credits='[[&quot;Ano&quot;, &quot;2021&quot;], [&quot;Produção&quot;, &quot;Una Criatividade!&quot;], [&quot;Produção Executiva&quot;, &quot;Qiah Salla e Maria Teresa Piccoli&quot;], [&quot;Roteiro&quot;, &quot;Chico Caprario e Gabriel Garcia&quot;], [&quot;Direção&quot;, &quot;Gabriel Garcia&quot;], [&quot;Direção de Produção&quot;, &quot;Serginho Melo&quot;], [&quot;Direção de Arte&quot;, &quot;Diego Oliveira&quot;]]' aria-hidden="true" tabindex="-1">
       <div class="poster-art"></div><img class="poster-img" src="assets/posters/serie-ailos.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()"><div class="poster-shade"></div><div class="poster-info"><span class="go">Assistir</span></div>
     </button>
   </div>
@@ -491,6 +523,7 @@
   <div class="mo-row">
     <div class="mo-video">
       <video class="mo-lazy-video" muted loop playsinline preload="none" poster="assets/videos/makingof-arte-ad-poster.jpg">
+        <source src="assets/videos/makingof-arte-ad-720.mp4" type="video/mp4" media="(max-width: 760px)">
         <source src="assets/videos/makingof-arte-ad.mp4" type="video/mp4">
       </video>
       <div class="mo-fallback">Vídeo em breve</div>
@@ -507,6 +540,7 @@
   <div class="mo-row reverse">
     <div class="mo-video">
       <video class="mo-lazy-video" muted loop playsinline preload="none" poster="assets/videos/makingof-colorizacao-poster.jpg">
+        <source src="assets/videos/makingof-colorizacao-720.mp4" type="video/mp4" media="(max-width: 760px)">
         <source src="assets/videos/makingof-colorizacao.mp4" type="video/mp4">
       </video>
       <div class="mo-fallback">Vídeo em breve</div>
@@ -521,7 +555,7 @@
   </div>
   <div class="mo-row" id="sobre">
     <div class="mo-video">
-      <img src="assets/brand/gabriel-foto.jpg" alt="Gabriel Garcia" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <img src="assets/brand/gabriel-foto.webp" alt="Gabriel Garcia" width="1387" height="1400" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
       <div class="mo-fallback">Foto em breve</div>
     </div>
     <div class="mo-text">
@@ -549,33 +583,34 @@
   <span>Santa Catarina, Brasil</span>
 </footer>
 
-<div class="modal" id="filmModal" aria-hidden="true">
+<dialog class="modal" id="filmModal" aria-labelledby="modalTitle">
   <div class="modal-backdrop" data-close></div>
   <div class="modal-panel">
-    <button type="button" class="modal-close" data-close aria-label="Fechar">✕</button>
+    <button type="button" class="modal-close" data-close aria-label="Fechar" autofocus>✕</button>
     <div class="modal-video" id="modalVideo"></div>
     <div class="modal-sheet" id="modalSheet"></div>
   </div>
-</div>
+</dialog>
 
 <script>
   const toggle = document.getElementById('navToggle');
   const nav = document.getElementById('nav');
   if(toggle){
-    toggle.addEventListener('click', () => nav.classList.toggle('open'));
-    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+    const setMenu = open => {
+      nav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
   }
 
-  // Vídeo de fundo: pausa se o usuário preferir menos movimento,
-  // e esconde a tag caso o arquivo assets/reel.mp4 ainda não exista.
+  // Vídeo de fundo: só começa a baixar/tocar se o usuário não preferir menos movimento
+  // (nesse caso fica o pôster parado). Esconde a tag se o arquivo não existir.
   const heroVideo = document.querySelector('.hero-video');
   if(heroVideo){
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(reduceMotion){
-      heroVideo.pause();
-      heroVideo.style.display = 'none';
-    }
-    heroVideo.addEventListener('error', () => { heroVideo.style.display = 'none'; });
+    heroVideo.addEventListener('error', () => { heroVideo.style.display = 'none'; }, true);
+    if(!reduceMotion) heroVideo.play().catch(() => {});
   }
 
   // Vídeos de making-of: mostra fallback em gradiente se o arquivo ainda não existir,
@@ -623,11 +658,17 @@
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
+  // Só aceita IDs do YouTube (11 caracteres) e links https — evita que um erro de digitação vire HTML/JS.
+  const isYtId = s => /^[\w-]{11}$/.test(s || '');
+  const isHttps = s => /^https:\/\//i.test(s || '');
+
   function openModal(d){
-    if(d.yt){
-      modalVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${d.yt}?rel=0&autoplay=1" title="${escapeHtml(d.title || '')}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe><a class="modal-yt-fallback" href="https://www.youtube.com/watch?v=${d.yt}" target="_blank" rel="noopener" title="Assistir no YouTube" aria-label="Assistir no YouTube"><svg viewBox="0 0 24 17" fill="none"><path d="M23.5 2.6c-.28-1.03-1.1-1.85-2.14-2.13C19.5 0 12 0 12 0S4.5 0 2.64.47C1.6.75.78 1.57.5 2.6 0 4.45 0 8.5 0 8.5s0 4.05.5 5.9c.28 1.03 1.1 1.82 2.14 2.1C4.5 17 12 17 12 17s7.5 0 9.36-.5c1.04-.28 1.86-1.07 2.14-2.1.5-1.85.5-5.9.5-5.9s0-4.05-.5-5.9z" fill="currentColor"/><path d="M9.6 12.1V4.9L15.8 8.5l-6.2 3.6z" fill="#0b0f0d"/></svg></a>`;
-    } else if(d.url){
-      modalVideo.innerHTML = `<div class="modal-link"><span>Trailer hospedado fora do YouTube</span><a href="${d.url}" target="_blank" rel="noopener">Assistir</a></div>`;
+    if(isYtId(d.yt)){
+      // youtube-nocookie: não grava cookies de rastreamento até o play (LGPD).
+      // O referrer precisa ir junto, senão o YouTube recusa o embed.
+      modalVideo.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${d.yt}?rel=0&autoplay=1" title="${escapeHtml(d.title || '')}" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><a class="modal-yt-fallback" href="https://www.youtube.com/watch?v=${d.yt}" target="_blank" rel="noopener" title="Assistir no YouTube" aria-label="Assistir no YouTube"><svg viewBox="0 0 24 17" fill="none"><path d="M23.5 2.6c-.28-1.03-1.1-1.85-2.14-2.13C19.5 0 12 0 12 0S4.5 0 2.64.47C1.6.75.78 1.57.5 2.6 0 4.45 0 8.5 0 8.5s0 4.05.5 5.9c.28 1.03 1.1 1.82 2.14 2.1C4.5 17 12 17 12 17s7.5 0 9.36-.5c1.04-.28 1.86-1.07 2.14-2.1.5-1.85.5-5.9.5-5.9s0-4.05-.5-5.9z" fill="currentColor"/><path d="M9.6 12.1V4.9L15.8 8.5l-6.2 3.6z" fill="#0b0f0d"/></svg></a>`;
+    } else if(isHttps(d.url)){
+      modalVideo.innerHTML = `<div class="modal-link"><span>Trailer hospedado fora do YouTube</span><a href="${escapeHtml(d.url)}" target="_blank" rel="noopener">Assistir</a></div>`;
     } else {
       modalVideo.innerHTML = `<div class="modal-link"><span>Trailer em breve</span></div>`;
     }
@@ -646,23 +687,26 @@
     });
     const mineHtml = mine.length ? `<div class="credit-mine">${mine.map(escapeHtml).join(' &nbsp;·&nbsp; ')}</div>` : '';
     const restHtml = rest.length ? `<div class="credit-crew">${rest.map(escapeHtml).join(' &nbsp;·&nbsp; ')}</div>` : '';
-    modalSheet.innerHTML = `<h3>${escapeHtml(d.title || '')}</h3>${mineHtml}${restHtml}`;
+    modalSheet.innerHTML = `<h3 id="modalTitle">${escapeHtml(d.title || '')}</h3>${mineHtml}${restHtml}`;
 
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    modal.showModal();
   }
 
   function closeModal(){
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-    modalVideo.innerHTML = ''; // remove o iframe para parar o vídeo
+    if(modal.open) modal.close();
   }
+
+  // Disparado tanto pelo botão/fundo quanto pelo Esc (fechamento nativo do <dialog>)
+  modal.addEventListener('close', () => {
+    document.body.classList.remove('modal-open');
+    modalVideo.innerHTML = ''; // remove o iframe para parar o vídeo
+  });
 
   document.querySelectorAll('.poster').forEach(p => {
     p.addEventListener('click', () => openModal(p.dataset));
   });
   modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
-  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
 
   // ---------- Faixa de pôsteres: auto-scroll + arraste por mouse/toque ----------
   const filmsWrap = document.getElementById('trabalhos');
@@ -676,8 +720,10 @@
     let startOffset = 0;
     let dragged = false;
     let rafId = null;
-    let resumeTimer = null;
-    const AUTO_SPEED = 0.45; // px por frame
+    let lastTime = 0;
+    let onScreen = true;
+    const AUTO_SPEED = 27; // px por segundo (mesma velocidade em telas de 60 Hz ou 120 Hz)
+    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     function measure(){
       halfWidth = filmsTrack.scrollWidth / 2;
@@ -690,22 +736,41 @@
       while(offset <= -halfWidth) offset += halfWidth;
       while(offset > 0) offset -= halfWidth;
     }
-    function tick(){
-      if(!isDown){
-        offset -= AUTO_SPEED;
+    function tick(now){
+      // limita o salto depois de uma pausa (aba em segundo plano, etc.)
+      const dt = lastTime ? Math.min(now - lastTime, 100) / 1000 : 0;
+      lastTime = now;
+      if(!isDown && !modal.open){
+        offset -= AUTO_SPEED * dt;
         normalize();
         applyTransform();
       }
       rafId = requestAnimationFrame(tick);
     }
-    function scheduleResume(){
-      // auto-scroll já está sempre rodando (pausado apenas durante o arraste via isDown)
+    // Auto-scroll só roda com a faixa visível e se o visitante não pediu "reduzir movimento".
+    // O arraste manual continua funcionando em qualquer caso.
+    function updateAuto(){
+      const shouldRun = onScreen && !reduceMotionQuery.matches;
+      if(shouldRun && rafId === null){
+        lastTime = 0;
+        rafId = requestAnimationFrame(tick);
+      } else if(!shouldRun && rafId !== null){
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
     }
 
     window.addEventListener('load', () => { measure(); });
     window.addEventListener('resize', () => { measure(); });
     measure();
-    rafId = requestAnimationFrame(tick);
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(entries => {
+        onScreen = entries[0].isIntersecting;
+        updateAuto();
+      }).observe(filmsWrap);
+    }
+    reduceMotionQuery.addEventListener('change', updateAuto);
+    updateAuto();
 
     filmsWrap.addEventListener('pointerdown', e => {
       isDown = true; dragged = false;
